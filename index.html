@@ -8,12 +8,31 @@
         body { font-family: sans-serif; margin: 0; background: #f0f4f8; color: #333; }
         header { background: #2c3e50; color: white; padding: 25px; text-align: center; border-bottom: 5px solid #3498db; }
         .container { padding: 20px; max-width: 450px; margin: auto; }
-        .card { background: white; padding: 20px; border-radius: 15px; box-shadow: 0 5px 15px rgba(0,0,0,0.1); }
+        .card { background: white; padding: 20px; border-radius: 15px; box-shadow: 0 5px 15px rgba(0,0,0,0.1); margin-bottom: 20px; }
         h2 { color: #2c3e50; margin-top: 0; }
         label { font-weight: bold; display: block; margin-top: 15px; color: #555; }
         input, select { width: 100%; padding: 12px; margin-top: 5px; border-radius: 8px; border: 1px solid #ddd; box-sizing: border-box; font-size: 16px; }
         button { width: 100%; background: #3498db; color: white; border: none; padding: 15px; margin-top: 25px; border-radius: 8px; font-size: 18px; font-weight: bold; cursor: pointer; transition: 0.3s; }
         button:active { background: #2980b9; transform: scale(0.98); }
+
+        /* Gallery Styles */
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 10px;
+            margin-top: 15px;
+        }
+        .gallery-item { text-align: center; }
+        .gallery-item img {
+            width: 100%;
+            height: 120px;
+            object-fit: cover;
+            border-radius: 10px;
+            border: 2px solid #eee;
+        }
+        .gallery-item p { font-size: 12px; margin-top: 5px; font-weight: bold; color: #7f8c8d; }
+        
+        .flyer-img { width: 100%; border-radius: 10px; margin-top: 10px; }
     </style>
 </head>
 <body>
@@ -26,7 +45,6 @@
 <div class="container">
     <div class="card">
         <h2>Book a Session</h2>
-        
         <label for="service">Service Type</label>
         <select id="service">
             <option value="Standard Cleaning">Standard Cleaning</option>
@@ -43,6 +61,33 @@
 
         <button onclick="sendJillianSMS()">Send Booking Request</button>
     </div>
+
+    <div class="card">
+        <h2>Our Work</h2>
+        <div class="gallery-grid">
+            <div class="gallery-item">
+                <img src="afterclean.jpg" alt="After Clean">
+                <p>Sparkling Results</p>
+            </div>
+            <div class="gallery-item">
+                <img src="airbnb.png" alt="Airbnb Cleaning">
+                <p>Airbnb Service</p>
+            </div>
+            <div class="gallery-item">
+                <img src="yard.cleanup.png" alt="Yard Cleanup">
+                <p>Yard Services</p>
+            </div>
+            <div class="gallery-item">
+                <img src="toiletbefore.after.png" alt="Deep Clean">
+                <p>Deep Cleaning</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="card">
+        <h2>Current Specials</h2>
+        <img src="flyer.jpg" alt="Cleaning Flyer" class="flyer-img">
+    </div>
 </div>
 
 <script>
@@ -58,8 +103,6 @@
         }
 
         const message = `Hi Jillian! I'd like to book a ${service} for ${date}. My name is ${name}.`;
-        
-        // This opens the native SMS app on mobile
         const smsUrl = `sms:${myNumber}?body=${encodeURIComponent(message)}`;
         window.location.href = smsUrl;
     }
