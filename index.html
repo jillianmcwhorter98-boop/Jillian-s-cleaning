@@ -1,74 +1,75 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Jillian's Cleaning Services</title>
-    <style>
-        /* --- COLOR & LAYOUT SETTINGS --- */
-        body { 
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
-            margin: 0; 
-            background: #e0f2f1; /* Light Teal Background */
-            color: #263238; 
-        }
-        header { 
-            background: #00796b; /* Deep Teal */
-            color: white; 
-            padding: 30px; 
-            text-align: center; 
-            border-bottom: 6px solid #4db6ac; 
-        }
-        .container { padding: 20px; max-width: 500px; margin: auto; }
-        
-        /* The Cards */
-        .card { 
-            background: white; 
-            padding: 20px; 
-            border-radius: 20px; 
-            box-shadow: 0 8px 20px rgba(0,0,0,0.1); 
-            margin-bottom: 25px; 
-            border-top: 5px solid #009688;
-        }
-        
-        h2 { color: #00796b; margin-top: 0; border-bottom: 2px solid #f0f0f0; padding-bottom: 10px; }
-        
-        /* Form Styling */
-        label { font-weight: bold; display: block; margin-top: 15px; color: #004d40; }
-        input, select { 
-            width: 100%; padding: 12px; margin-top: 5px; border-radius: 10px; 
-            border: 2px solid #b2dfdb; box-sizing: border-box; font-size: 16px; 
-        }
-        
-        /* Button Styling */
-        button { 
-            width: 100%; background: #009688; color: white; border: none; 
-            padding: 18px; margin-top: 25px; border-radius: 12px; 
-            font-size: 18px; font-weight: bold; cursor: pointer; transition: 0.3s; 
-        }
-        button:hover { background: #00796b; }
+<style>
+    /* --- UPDATED COLOR PALETTE --- */
+    :root {
+        --primary-blue: #0277bd;      /* Bright Blue */
+        --deep-teal: #006064;         /* Darker Teal */
+        --accent-teal: #26a69a;       /* Light Teal */
+        --charcoal: #263238;          /* Professional Black/Grey */
+        --bg-light: #f5f9ff;          /* Very Light Blue-Grey */
+        --white: #ffffff;
+    }
 
-        /* Gallery Grid */
-        .gallery-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 12px;
-            margin-top: 15px;
-        }
-        .gallery-item img {
-            width: 100%; height: 130px; object-fit: cover; 
-            border-radius: 12px; border: 1px solid #ddd;
-        }
-        .gallery-item p { font-size: 13px; font-weight: 600; color: #546e7a; margin-top: 5px; text-align: center; }
-        
-        /* Collage Section */
-        .collage-container { width: 100%; text-align: center; }
-        .collage-img { 
-            width: 100%; border-radius: 15px; border: 3px solid #009688; 
-            box-shadow: 0 4px 10px rgba(0,0,0,0.2); 
-        }
-    </style>
-</head>
+    body { 
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
+        margin: 0; 
+        background: var(--bg-light); 
+        color: var(--charcoal); 
+    }
+
+    header { 
+        background: var(--deep-teal); 
+        color: var(--white); 
+        padding: 40px 20px; 
+        text-align: center; 
+        border-bottom: 5px solid var(--primary-blue); 
+    }
+
+    header h1 { margin: 0; font-size: 2.2em; letter-spacing: 1px; }
+    header p { margin: 10px 0 0; opacity: 0.9; font-style: italic; }
+
+    .container { padding: 20px; max-width: 500px; margin: auto; }
+    
+    .card { 
+        background: var(--white); 
+        padding: 25px; 
+        border-radius: 15px; 
+        box-shadow: 0 4px 15px rgba(0,0,0,0.08); 
+        margin-bottom: 25px; 
+        border-left: 6px solid var(--primary-blue); /* Blue accent stripe */
+    }
+    
+    h2 { color: var(--deep-teal); margin-top: 0; font-size: 1.4em; }
+    p { line-height: 1.6; }
+    
+    label { font-weight: bold; display: block; margin-top: 15px; color: var(--charcoal); }
+    
+    input, select { 
+        width: 100%; padding: 12px; margin-top: 5px; border-radius: 8px; 
+        border: 2px solid #cfd8dc; box-sizing: border-box; font-size: 16px;
+        transition: border-color 0.3s;
+    }
+
+    input:focus, select:focus {
+        outline: none;
+        border-color: var(--primary-blue);
+    }
+    
+    button { 
+        width: 100%; background: var(--charcoal); color: var(--white); border: none; 
+        padding: 18px; margin-top: 25px; border-radius: 10px; 
+        font-size: 18px; font-weight: bold; cursor: pointer; transition: 0.3s; 
+    }
+    button:hover { background: var(--deep-teal); }
+
+    /* Gallery Grid */
+    .gallery-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; margin-top: 15px; }
+    .gallery-item img {
+        width: 100%; height: 130px; object-fit: cover; 
+        border-radius: 10px; border: 1px solid #eee;
+    }
+    .gallery-item p { font-size: 13px; font-weight: 600; color: var(--primary-blue); margin-top: 5px; text-align: center; }
+</style>
+
 <body>
 
 <header>
@@ -78,12 +79,20 @@
 
 <div class="container">
     <div class="card">
+        <h2>Welcome to Jillian's</h2>
+        <p>I provide expert home care designed to give you your time back. From deep cleans to pet care and organizational projects, I handle the details so you can enjoy your space.</p>
+    </div>
+
+    <div class="card">
         <h2>Book a Session</h2>
         <label for="service">Service Type</label>
         <select id="service">
             <option value="Standard Cleaning">Standard Cleaning</option>
             <option value="Deep Cleaning">Deep Cleaning</option>
-            <option value="Office Cleaning">Office Cleaning</option>
+            <option value="Organization">Organization</option>
+            <option value="Laundry & Folding">Laundry & Folding</option>
+            <option value="Moving & Packing">Moving & Packing</option>
+            <option value="Pet Care">Pet Care</option>
             <option value="Move In/Out">Move In/Out</option>
         </select>
 
@@ -93,39 +102,13 @@
         <label for="bookDate">Preferred Date</label>
         <input type="date" id="bookDate">
 
+        <label for="bookTime">Preferred Time</label>
+        <input type="time" id="bookTime">
+
         <button onclick="sendJillianSMS()">Send Booking Request</button>
     </div>
 
-    <div class="card">
-        <h2>Recent Transformations</h2>
-        <div class="gallery-grid">
-            <div class="gallery-item">
-                <img src="afterclean.jpg" alt="After Clean">
-                <p>Sparkling Results</p>
-            </div>
-            <div class="gallery-item">
-                <img src="airbnb.png" alt="Airbnb Service">
-                <p>Airbnb Ready</p>
-            </div>
-            <div class="gallery-item">
-                <img src="yard.cleanup.png" alt="Yard Service">
-                <p>Yard Cleanup</p>
-            </div>
-            <div class="gallery-item">
-                <img src="laundry.png" alt="Laundry Service">
-                <p>Laundry & Folding</p>
-            </div>
-        </div>
     </div>
-
-    <div class="card">
-        <h2>Our Work Collage</h2>
-        <div class="collage-container">
-            <img src="flyer.jpg" alt="Cleaning Service Collage" class="collage-img">
-            <p style="font-size: 14px; color: #555; margin-top: 10px;">Check out our various services and high-quality results!</p>
-        </div>
-    </div>
-</div>
 
 <script>
     function sendJillianSMS() {
@@ -133,17 +116,16 @@
         const service = document.getElementById('service').value;
         const name = document.getElementById('custName').value;
         const date = document.getElementById('bookDate').value;
+        const time = document.getElementById('bookTime').value;
 
-        if (!name || !date) {
-            alert("Please provide your name and a date!");
+        if (!name || !date || !time) {
+            alert("Please provide your name, date, and preferred time!");
             return;
         }
 
-        const message = `Hi Jillian! I'd like to book a ${service} for ${date}. My name is ${name}.`;
+        const message = `Hi Jillian! I'd like to book a ${service} for ${date} at ${time}. My name is ${name}.`;
         const smsUrl = `sms:${myNumber}?body=${encodeURIComponent(message)}`;
         window.location.href = smsUrl;
     }
 </script>
-
 </body>
-</html>
