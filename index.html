@@ -1,141 +1,619 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Jillian's Cleaning Services</title>
-    <style>
-        /* --- BLUE, WHITE, BLACK, TEAL PALETTE --- */
-        body { 
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
-            margin: 0; 
-            background: #f0f4f8; /* Very light blue background */
-            color: #000000; /* Black text for readability */
-        }
-        header { 
-            background: #003366; /* Deep Blue */
-            color: white; 
-            padding: 40px 20px; 
-            text-align: center; 
-            border-bottom: 6px solid #008080; /* Teal Border */
-        }
-        .container { padding: 20px; max-width: 500px; margin: auto; }
-        
-        .card { 
-            background: white; 
-            padding: 25px; 
-            border-radius: 12px; 
-            box-shadow: 0 4px 12px rgba(0,0,0,0.15); 
-            margin-bottom: 25px; 
-            border-top: 5px solid #008080; /* Teal accent */
-        }
-        
-        h2 { color: #003366; margin-top: 0; border-bottom: 2px solid #e0e0e0; padding-bottom: 10px; }
-        p { line-height: 1.5; color: #333; }
-        
-        label { font-weight: bold; display: block; margin-top: 15px; color: #003366; }
-        input, select { 
-            width: 100%; padding: 12px; margin-top: 5px; border-radius: 8px; 
-            border: 2px solid #003366; box-sizing: border-box; font-size: 16px; 
-        }
-        
-        button { 
-            width: 100%; background: #000000; /* Black Button */
-            color: white; border: none; 
-            padding: 18px; margin-top: 25px; border-radius: 8px; 
-            font-size: 18px; font-weight: bold; cursor: pointer; transition: 0.3s; 
-        }
-        button:hover { background: #008080; /* Turns Teal on hover */ }
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Jillian's Cleaning Services</title>
 
-        .gallery-grid {
-            display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; margin-top: 15px;
-        }
-        .gallery-item img {
-            width: 100%; height: 130px; object-fit: cover; border-radius: 8px; border: 1px solid #003366;
-        }
-        .gallery-item p { font-size: 13px; font-weight: bold; color: #008080; margin-top: 5px; text-align: center; }
-    </style>
+  <style>
+    /* ===============================
+       THEME (easy color controls)
+       =============================== */
+    :root{
+      --bg: #f0f4f8;
+      --text: #0b1220;
+      --muted: #334155;
+
+      --navy: #003366;      /* primary */
+      --teal: #008080;      /* accent */
+      --black: #0b0b0b;
+
+      --card: #ffffff;
+      --border: rgba(0,0,0,0.10);
+      --shadow: 0 8px 20px rgba(0,0,0,0.12);
+
+      --focus: rgba(0,128,128,0.35);
+    }
+
+    * { box-sizing: border-box; }
+    body{
+      margin: 0;
+      font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+    }
+
+    /* ===============================
+       HEADER
+       =============================== */
+    header{
+      background: var(--navy);
+      color: #fff;
+      padding: 44px 16px 54px;
+      text-align: center;
+      border-bottom: 6px solid var(--teal);
+    }
+    header h1{
+      margin: 0;
+      font-size: clamp(28px, 5vw, 40px);
+      letter-spacing: 0.3px;
+    }
+    header p{
+      margin: 10px 0 0;
+      color: rgba(255,255,255,0.92);
+      font-size: 15.5px;
+    }
+
+    /* ===============================
+       TOP BAR (sticky)
+       =============================== */
+    .topbar{
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      padding: 12px 14px;
+      background: rgba(255,255,255,0.92);
+      backdrop-filter: blur(8px);
+      border-bottom: 1px solid var(--border);
+    }
+    .menu-btn{
+      appearance: none;
+      border: 1px solid var(--border);
+      background: #fff;
+      padding: 10px 12px;
+      border-radius: 10px;
+      cursor: pointer;
+      font-size: 18px;
+      line-height: 1;
+    }
+    .brand{
+      font-weight: 800;
+      color: var(--navy);
+      letter-spacing: 0.2px;
+    }
+    .topbar-cta{
+      text-decoration: none;
+      background: var(--teal);
+      color: #fff;
+      padding: 10px 12px;
+      border-radius: 10px;
+      font-weight: 700;
+      border: 1px solid rgba(0,0,0,0.05);
+    }
+    .topbar-cta:active{ transform: scale(0.98); }
+
+    /* ===============================
+       SIDE MENU
+       =============================== */
+    .backdrop{
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.45);
+      opacity: 0;
+      pointer-events: none;
+      transition: 0.2s ease;
+      z-index: 80;
+    }
+    .backdrop.show{
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    .side-menu{
+      position: fixed;
+      top: 0;
+      left: 0;
+      height: 100%;
+      width: 290px;
+      background: #fff;
+      transform: translateX(-105%);
+      transition: 0.25s ease;
+      z-index: 90;
+      box-shadow: 12px 0 24px rgba(0,0,0,0.25);
+      padding: 14px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+    .side-menu.open{ transform: translateX(0); }
+
+    .side-menu-header{
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding-bottom: 10px;
+      border-bottom: 1px solid var(--border);
+    }
+    .side-title{
+      font-weight: 900;
+      color: var(--navy);
+      font-size: 18px;
+    }
+    .close-btn{
+      appearance: none;
+      border: 1px solid var(--border);
+      background: #fff;
+      padding: 8px 10px;
+      border-radius: 10px;
+      cursor: pointer;
+      font-size: 16px;
+      line-height: 1;
+    }
+
+    .side-menu a{
+      text-decoration: none;
+      color: var(--text);
+      font-weight: 700;
+      padding: 12px 10px;
+      border-radius: 12px;
+      border: 1px solid transparent;
+    }
+    .side-menu a:hover{
+      border-color: var(--border);
+      background: rgba(0,128,128,0.06);
+    }
+    .side-divider{
+      height: 1px;
+      background: var(--border);
+      margin: 6px 0;
+    }
+    .side-action{
+      background: var(--navy);
+      color: #fff !important;
+      text-align: center;
+      font-weight: 900;
+    }
+    .side-action.secondary{
+      background: var(--teal);
+    }
+
+    /* ===============================
+       LAYOUT CONTAINER + CARDS
+       =============================== */
+    .container{
+      padding: 18px 14px 30px;
+      max-width: 980px;
+      margin: 0 auto;
+    }
+
+    .card{
+      background: var(--card);
+      padding: 22px;
+      border-radius: 14px;
+      box-shadow: var(--shadow);
+      border-top: 5px solid var(--teal);
+      margin-bottom: 18px;
+      border: 1px solid rgba(0,0,0,0.06);
+    }
+
+    h2{
+      margin: 0 0 12px;
+      color: var(--navy);
+      padding-bottom: 10px;
+      border-bottom: 1px solid rgba(0,0,0,0.10);
+      font-size: 20px;
+    }
+    p{
+      margin: 0;
+      line-height: 1.55;
+      color: var(--muted);
+    }
+
+    /* ===============================
+       SERVICES (nice grid)
+       =============================== */
+    .services-grid{
+      display: grid;
+      gap: 12px;
+      grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+      margin-top: 12px;
+    }
+    .service{
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 14px;
+      background: rgba(0,51,102,0.02);
+    }
+    .service h3{
+      margin: 0 0 6px;
+      color: var(--text);
+      font-size: 16px;
+    }
+    .service p{
+      font-size: 14px;
+      color: var(--muted);
+    }
+
+    /* ===============================
+       FORM
+       =============================== */
+    label{
+      font-weight: 800;
+      display: block;
+      margin-top: 14px;
+      color: var(--navy);
+      font-size: 14px;
+    }
+    input, select{
+      width: 100%;
+      padding: 12px;
+      margin-top: 6px;
+      border-radius: 10px;
+      border: 2px solid var(--navy);
+      font-size: 16px;
+      outline: none;
+      background: #fff;
+    }
+    input:focus, select:focus{
+      border-color: var(--teal);
+      box-shadow: 0 0 0 4px var(--focus);
+    }
+
+    .btn{
+      width: 100%;
+      background: var(--black);
+      color: #fff;
+      border: none;
+      padding: 16px;
+      margin-top: 18px;
+      border-radius: 10px;
+      font-size: 18px;
+      font-weight: 900;
+      cursor: pointer;
+      transition: 0.2s;
+    }
+    .btn:hover{ background: var(--teal); }
+    .btn:active{ transform: scale(0.99); }
+
+    /* ===============================
+       GALLERY
+       =============================== */
+    .gallery-grid{
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+      gap: 14px;
+      margin-top: 14px;
+    }
+    .gallery-item{
+      text-align: center;
+    }
+    .gallery-item img{
+      width: 100%;
+      height: 150px;
+      object-fit: cover;
+      border-radius: 12px;
+      border: 2px solid var(--teal);
+      background: #fff;
+      cursor: zoom-in;
+      transition: 0.2s ease;
+    }
+    .gallery-item img:hover{
+      transform: translateY(-2px);
+      box-shadow: 0 10px 22px rgba(0,0,0,0.16);
+    }
+    .gallery-item p{
+      margin-top: 8px;
+      font-size: 13px;
+      font-weight: 800;
+      color: var(--navy);
+      text-align: center;
+    }
+
+    /* ===============================
+       CONTACT SECTION
+       =============================== */
+    .contact-actions{
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+      gap: 12px;
+      margin-top: 14px;
+    }
+    .contact-actions a{
+      text-decoration: none;
+      display: block;
+      padding: 14px;
+      border-radius: 14px;
+      font-weight: 900;
+      text-align: center;
+      border: 1px solid var(--border);
+      background: #fff;
+      color: var(--text);
+    }
+    .contact-actions a.primary{
+      background: var(--navy);
+      color: #fff;
+    }
+    .contact-actions a.accent{
+      background: var(--teal);
+      color: #fff;
+    }
+
+    /* ===============================
+       IMAGE MODAL (tap-to-zoom)
+       =============================== */
+    .modal{
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.75);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 18px;
+      z-index: 120;
+    }
+    .modal.show{ display: flex; }
+    .modal img{
+      max-width: min(980px, 95vw);
+      max-height: 85vh;
+      border-radius: 14px;
+      border: 2px solid rgba(255,255,255,0.25);
+      box-shadow: 0 18px 40px rgba(0,0,0,0.35);
+      cursor: zoom-out;
+      background: #fff;
+    }
+    .modal .hint{
+      position: fixed;
+      bottom: 16px;
+      left: 50%;
+      transform: translateX(-50%);
+      color: rgba(255,255,255,0.9);
+      font-size: 13px;
+      font-weight: 700;
+      background: rgba(0,0,0,0.35);
+      padding: 8px 10px;
+      border-radius: 999px;
+      border: 1px solid rgba(255,255,255,0.15);
+    }
+  </style>
 </head>
-<body>
 
-<header>
+<body>
+  <header>
     <h1>Jillian's Cleaning</h1>
     <p>Professional, Reliable & Sparkling Clean</p>
-</header>
+  </header>
 
-<div class="container">
-    <div class="card">
-        <h2>Welcome</h2>
-        <p>Hi, I'm Jillian! I provide high-quality cleaning, organization, and home care services. My goal is to make your life easier and your home a place of peace and clarity.</p>
+  <!-- Top Nav -->
+  <div class="topbar">
+    <button class="menu-btn" onclick="toggleMenu()" aria-label="Open menu">☰</button>
+    <div class="brand">Jillian’s Cleaning</div>
+    <a class="topbar-cta" href="#contact">Contact</a>
+  </div>
+
+  <!-- Slide-out Menu -->
+  <div id="sideMenu" class="side-menu" aria-hidden="true">
+    <div class="side-menu-header">
+      <div class="side-title">Menu</div>
+      <button class="close-btn" onclick="toggleMenu()" aria-label="Close menu">✕</button>
     </div>
 
+    <a href="#services" onclick="closeMenu()">Services</a>
+    <a href="#book" onclick="closeMenu()">Book</a>
+    <a href="#gallery" onclick="closeMenu()">Gallery</a>
+    <a href="#contact" onclick="closeMenu()">Contact</a>
+
+    <div class="side-divider"></div>
+
+    <a class="side-action" href="sms:2062558039">Text Me</a>
+    <a class="side-action secondary" href="mailto:jillianmcwhorter98@gmail.com">Email Me</a>
+  </div>
+
+  <!-- Backdrop -->
+  <div id="backdrop" class="backdrop" onclick="closeMenu()"></div>
+
+  <div class="container">
     <div class="card">
-        <h2>Book a Session</h2>
-        <label for="service">Service Type</label>
-        <select id="service">
-            <option value="Standard Cleaning">Standard Cleaning</option>
-            <option value="Deep Cleaning">Deep Cleaning</option>
-            <option value="Organization">Organization</option>
-            <option value="Laundry & Folding">Laundry & Folding</option>
-            <option value="Moving & Packing">Moving & Packing</option>
-            <option value="Pet Care">Pet Care</option>
-            <option value="Move In/Out">Move In/Out</option>
-        </select>
-
-        <label for="custName">Your Name</label>
-        <input type="text" id="custName" placeholder="Enter your name">
-
-        <label for="bookDate">Preferred Date</label>
-        <input type="date" id="bookDate">
-
-        <label for="bookTime">Preferred Time</label>
-        <input type="time" id="bookTime">
-
-        <button onclick="sendJillianSMS()">Send Booking Request</button>
+      <h2>Welcome</h2>
+      <p>
+        Hi, I'm Jillian! I provide high-quality cleaning, organization, and home care services.
+        My goal is to make your life easier and your home a place of peace and clarity.
+      </p>
     </div>
 
-    <div class="card">
-        <h2>Recent Work</h2>
-        <div class="gallery-grid">
-            <div class="gallery-item">
-                <img src="sinkbefore.after.png" alt="Sink Clean">
-                <p>Sparkling Sinks</p>
-            </div>
-            <div class="gallery-item">
-                <img src="packingjob.jpg" alt="Packing Service">
-                <p>Expert Packing</p>
-            </div>
-            <div class="gallery-item">
-                <img src="laundry.png" alt="Laundry Service">
-                <p>Laundry & Folding</p>
-            </div>
-            <div class="gallery-item">
-                <img src="toiletbefore.after.png" alt="Bathroom Clean">
-                <p>Deep Cleans</p>
-            </div>
+    <div class="card" id="services">
+      <h2>Services</h2>
+      <p>Choose what you need — I tailor every job to your preferences and priorities.</p>
+
+      <div class="services-grid">
+        <div class="service">
+          <h3>Standard Cleaning</h3>
+          <p>Kitchens, bathrooms, floors, dusting, reset & tidy.</p>
         </div>
+        <div class="service">
+          <h3>Deep Cleaning</h3>
+          <p>Detail-focused scrubs, buildup removal, and shine.</p>
+        </div>
+        <div class="service">
+          <h3>Move In / Move Out</h3>
+          <p>Thorough turnover cleans to help you pass inspection.</p>
+        </div>
+        <div class="service">
+          <h3>Organization</h3>
+          <p>Declutter, create systems, and make your space feel easier.</p>
+        </div>
+        <div class="service">
+          <h3>Laundry & Folding</h3>
+          <p>Wash/dry, fold, and put away (if you want).</p>
+        </div>
+        <div class="service">
+          <h3>Moving & Packing</h3>
+          <p>Pack neatly, label boxes, and protect fragile items.</p>
+        </div>
+      </div>
     </div>
-</div>
 
-<script>
+    <div class="card" id="book">
+      <h2>Book a Session</h2>
+
+      <label for="service">Service Type</label>
+      <select id="service">
+        <option value="Standard Cleaning">Standard Cleaning</option>
+        <option value="Deep Cleaning">Deep Cleaning</option>
+        <option value="Organization">Organization</option>
+        <option value="Laundry & Folding">Laundry & Folding</option>
+        <option value="Moving & Packing">Moving & Packing</option>
+        <option value="Pet Care">Pet Care</option>
+        <option value="Move In/Out">Move In/Out</option>
+      </select>
+
+      <label for="custName">Your Name</label>
+      <input type="text" id="custName" placeholder="Enter your name" />
+
+      <label for="bookDate">Preferred Date</label>
+      <input type="date" id="bookDate" />
+
+      <label for="bookTime">Preferred Time</label>
+      <input type="time" id="bookTime" />
+
+      <button class="btn" onclick="sendJillianSMS()">Send Booking Request</button>
+    </div>
+
+    <div class="card" id="gallery">
+      <h2>Full Gallery</h2>
+      <p>Tap any photo to enlarge.</p>
+
+      <div class="gallery-grid">
+        <div class="gallery-item">
+          <img src="sinkbefore.after.png" alt="Sink before and after cleaning" />
+          <p>Sparkling Sinks</p>
+        </div>
+
+        <div class="gallery-item">
+          <img src="toiletbefore.after.png" alt="Toilet before and after cleaning" />
+          <p>Bathroom Deep Clean</p>
+        </div>
+
+        <div class="gallery-item">
+          <img src="after.move-out.clean.jpg" alt="Move out cleaning results" />
+          <p>Move-Out Clean</p>
+        </div>
+
+        <div class="gallery-item">
+          <img src="packingjob.jpg" alt="Professional packing service" />
+          <p>Expert Packing</p>
+        </div>
+
+        <div class="gallery-item">
+          <img src="laundry.png" alt="Laundry and folding service" />
+          <p>Laundry & Folding</p>
+        </div>
+
+        <div class="gallery-item">
+          <img src="yard.cleanup.png" alt="Yard cleanup service" />
+          <p>Yard Cleanup</p>
+        </div>
+
+        <div class="gallery-item">
+          <img src="airbnb.png" alt="Airbnb cleaning example" />
+          <p>Airbnb Reset</p>
+        </div>
+
+        <div class="gallery-item">
+          <img src="flyer.jpg" alt="Jillian's Cleaning flyer" />
+          <p>Service Flyer</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="card" id="contact">
+      <h2>Contact Me</h2>
+      <p>Fastest response: text me. You can also email anytime.</p>
+
+      <div class="contact-actions">
+        <a class="primary" href="sms:2062558039">📱 Text: (206) 255-8039</a>
+        <a class="accent" href="tel:2062558039">📞 Call: (206) 255-8039</a>
+        <a href="mailto:jillianmcwhorter98@gmail.com">✉️ Email: jillianmcwhorter98@gmail.com</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Tap-to-zoom modal -->
+  <div id="imgModal" class="modal" aria-hidden="true">
+    <img id="modalImg" alt="Enlarged photo" />
+    <div class="hint">Tap anywhere to close</div>
+  </div>
+
+  <script>
+    // ===== Booking SMS =====
     function sendJillianSMS() {
-        const myNumber = "2062558039";
-        const service = document.getElementById('service').value;
-        const name = document.getElementById('custName').value;
-        const date = document.getElementById('bookDate').value;
-        const time = document.getElementById('bookTime').value;
+      const myNumber = "2062558039";
+      const service = document.getElementById("service").value;
+      const name = document.getElementById("custName").value.trim();
+      const date = document.getElementById("bookDate").value;
+      const time = document.getElementById("bookTime").value;
 
-        if (!name || !date || !time) {
-            alert("Please provide your name, date, and time!");
-            return;
-        }
+      if (!name || !date || !time) {
+        alert("Please provide your name, date, and time!");
+        return;
+      }
 
-        const message = `Hi Jillian! I'd like to book ${service} for ${date} at ${time}. My name is ${name}.`;
-        const smsUrl = `sms:${myNumber}?body=${encodeURIComponent(message)}`;
-        window.location.href = smsUrl;
+      const message = `Hi Jillian! I'd like to book ${service} for ${date} at ${time}. My name is ${name}.`;
+      const smsUrl = `sms:${myNumber}?body=${encodeURIComponent(message)}`;
+      window.location.href = smsUrl;
     }
-</script>
 
+    // ===== Side menu =====
+    function toggleMenu() {
+      const menu = document.getElementById("sideMenu");
+      const backdrop = document.getElementById("backdrop");
+      const open = menu.classList.toggle("open");
+      backdrop.classList.toggle("show", open);
+      menu.setAttribute("aria-hidden", (!open).toString());
+    }
+    function closeMenu() {
+      const menu = document.getElementById("sideMenu");
+      const backdrop = document.getElementById("backdrop");
+      menu.classList.remove("open");
+      backdrop.classList.remove("show");
+      menu.setAttribute("aria-hidden", "true");
+    }
+
+    // Close menu on ESC
+    document.addEventListener("keydown", (e) => {
+      if (e.key === "Escape") {
+        closeMenu();
+        closeModal();
+      }
+    });
+
+    // ===== Tap-to-zoom gallery =====
+    const modal = document.getElementById("imgModal");
+    const modalImg = document.getElementById("modalImg");
+
+    function openModal(src, alt) {
+      modalImg.src = src;
+      modalImg.alt = alt || "Enlarged photo";
+      modal.classList.add("show");
+      modal.setAttribute("aria-hidden", "false");
+    }
+
+    function closeModal() {
+      modal.classList.remove("show");
+      modal.setAttribute("aria-hidden", "true");
+      modalImg.src = "";
+    }
+
+    // Tap backdrop or image to close
+    modal.addEventListener("click", closeModal);
+
+    // Attach click handler to all gallery images
+    document.querySelectorAll(".gallery-item img").forEach((img) => {
+      img.addEventListener("click", () => openModal(img.getAttribute("src"), img.getAttribute("alt")));
+    });
+  </script>
 </body>
-                    </html>
-                    
+</html>
