@@ -233,6 +233,9 @@ I take a client-preference approach and tailor services to your specific needs, 
 <label>Preferred Time</label>
 <input type="time" id="time">
 
+<label>Notes / Special Instructions</label>
+<textarea id="notes" placeholder="Any preferences, pets, or special requests..." rows="4" style="width:100%; padding:12px; border-radius:8px; border:2px solid #e3ecf2; font-size:16px;"></textarea>
+  
 <button onclick="sendSMS()">Book Now / Initial Consultation</button>
 </div>
 
@@ -284,10 +287,15 @@ function closeModal(){
   modal.classList.remove('show');
 }
 function sendSMS(){
-  const msg = `Hi Jillian! I’d like to schedule an initial consultation for ${service.value}. My name is ${name.value}.`;
+  const msg = `Hi Jillian! I’d like to schedule an initial consultation for ${service.value} on ${date.value} at ${time.value}. My name is ${name.value}.`;
+  
+  const notes = document.getElementById('notes').value;
+  if(notes){
+    msg += ` Notes: ${notes}`;
+  }
+  
   window.location.href = `sms:2062558039?body=${encodeURIComponent(msg)}`;
 }
-</script>
 
 </body>
 </html>
