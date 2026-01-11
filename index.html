@@ -1,619 +1,293 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Jillian's Cleaning Services</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Jillian’s Cleaning & Home Care</title>
 
-  <style>
-    /* ===============================
-       THEME (easy color controls)
-       =============================== */
-    :root{
-      --bg: #f0f4f8;
-      --text: #0b1220;
-      --muted: #334155;
+<style>
+:root{
+  --primary:#0b3c5d;
+  --accent:#1fa2a6;
+  --light:#f4f7fb;
+  --dark:#1a1a1a;
+  --soft:#e3ecf2;
+}
 
-      --navy: #003366;      /* primary */
-      --teal: #008080;      /* accent */
-      --black: #0b0b0b;
+*{box-sizing:border-box}
 
-      --card: #ffffff;
-      --border: rgba(0,0,0,0.10);
-      --shadow: 0 8px 20px rgba(0,0,0,0.12);
+body{
+  margin:0;
+  font-family:'Segoe UI',sans-serif;
+  background:var(--light);
+  color:var(--dark);
+}
 
-      --focus: rgba(0,128,128,0.35);
-    }
+/* HEADER */
+header{
+  background:var(--primary);
+  color:white;
+  padding:40px 20px;
+  text-align:center;
+}
 
-    * { box-sizing: border-box; }
-    body{
-      margin: 0;
-      font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-      background: var(--bg);
-      color: var(--text);
-    }
+header h1{margin:0;font-size:28px;}
+header p{margin-top:8px;opacity:.95}
 
-    /* ===============================
-       HEADER
-       =============================== */
-    header{
-      background: var(--navy);
-      color: #fff;
-      padding: 44px 16px 54px;
-      text-align: center;
-      border-bottom: 6px solid var(--teal);
-    }
-    header h1{
-      margin: 0;
-      font-size: clamp(28px, 5vw, 40px);
-      letter-spacing: 0.3px;
-    }
-    header p{
-      margin: 10px 0 0;
-      color: rgba(255,255,255,0.92);
-      font-size: 15.5px;
-    }
+/* HERO IMAGE */
+.hero img{
+  width:100%;
+  height:420px;
+  object-fit:cover;
+  display:block;
+}
 
-    /* ===============================
-       TOP BAR (sticky)
-       =============================== */
-    .topbar{
-      position: sticky;
-      top: 0;
-      z-index: 50;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 12px;
-      padding: 12px 14px;
-      background: rgba(255,255,255,0.92);
-      backdrop-filter: blur(8px);
-      border-bottom: 1px solid var(--border);
-    }
-    .menu-btn{
-      appearance: none;
-      border: 1px solid var(--border);
-      background: #fff;
-      padding: 10px 12px;
-      border-radius: 10px;
-      cursor: pointer;
-      font-size: 18px;
-      line-height: 1;
-    }
-    .brand{
-      font-weight: 800;
-      color: var(--navy);
-      letter-spacing: 0.2px;
-    }
-    .topbar-cta{
-      text-decoration: none;
-      background: var(--teal);
-      color: #fff;
-      padding: 10px 12px;
-      border-radius: 10px;
-      font-weight: 700;
-      border: 1px solid rgba(0,0,0,0.05);
-    }
-    .topbar-cta:active{ transform: scale(0.98); }
+/* LAYOUT */
+.container{
+  max-width:600px;
+  margin:auto;
+  padding:22px;
+}
 
-    /* ===============================
-       SIDE MENU
-       =============================== */
-    .backdrop{
-      position: fixed;
-      inset: 0;
-      background: rgba(0,0,0,0.45);
-      opacity: 0;
-      pointer-events: none;
-      transition: 0.2s ease;
-      z-index: 80;
-    }
-    .backdrop.show{
-      opacity: 1;
-      pointer-events: auto;
-    }
+.card{
+  background:white;
+  border-radius:14px;
+  padding:24px;
+  margin-bottom:28px;
+  box-shadow:0 6px 16px rgba(0,0,0,.1);
+  border-left:6px solid var(--accent);
+}
 
-    .side-menu{
-      position: fixed;
-      top: 0;
-      left: 0;
-      height: 100%;
-      width: 290px;
-      background: #fff;
-      transform: translateX(-105%);
-      transition: 0.25s ease;
-      z-index: 90;
-      box-shadow: 12px 0 24px rgba(0,0,0,0.25);
-      padding: 14px;
-      display: flex;
-      flex-direction: column;
-      gap: 8px;
-    }
-    .side-menu.open{ transform: translateX(0); }
+h2{
+  margin-top:0;
+  color:var(--primary);
+}
 
-    .side-menu-header{
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding-bottom: 10px;
-      border-bottom: 1px solid var(--border);
-    }
-    .side-title{
-      font-weight: 900;
-      color: var(--navy);
-      font-size: 18px;
-    }
-    .close-btn{
-      appearance: none;
-      border: 1px solid var(--border);
-      background: #fff;
-      padding: 8px 10px;
-      border-radius: 10px;
-      cursor: pointer;
-      font-size: 16px;
-      line-height: 1;
-    }
+/* BOOK NOTE */
+.book-note{
+  font-size:15px;
+  color:#555;
+  margin-bottom:18px;
+  line-height:1.5;
+}
 
-    .side-menu a{
-      text-decoration: none;
-      color: var(--text);
-      font-weight: 700;
-      padding: 12px 10px;
-      border-radius: 12px;
-      border: 1px solid transparent;
-    }
-    .side-menu a:hover{
-      border-color: var(--border);
-      background: rgba(0,128,128,0.06);
-    }
-    .side-divider{
-      height: 1px;
-      background: var(--border);
-      margin: 6px 0;
-    }
-    .side-action{
-      background: var(--navy);
-      color: #fff !important;
-      text-align: center;
-      font-weight: 900;
-    }
-    .side-action.secondary{
-      background: var(--teal);
-    }
+/* FORM */
+label{
+  font-weight:600;
+  display:block;
+  margin-top:14px;
+}
 
-    /* ===============================
-       LAYOUT CONTAINER + CARDS
-       =============================== */
-    .container{
-      padding: 18px 14px 30px;
-      max-width: 980px;
-      margin: 0 auto;
-    }
+input,select{
+  width:100%;
+  padding:13px;
+  margin-top:6px;
+  border-radius:8px;
+  border:2px solid var(--soft);
+  font-size:16px;
+}
 
-    .card{
-      background: var(--card);
-      padding: 22px;
-      border-radius: 14px;
-      box-shadow: var(--shadow);
-      border-top: 5px solid var(--teal);
-      margin-bottom: 18px;
-      border: 1px solid rgba(0,0,0,0.06);
-    }
+input:focus,select:focus{
+  border-color:var(--accent);
+  outline:none;
+}
 
-    h2{
-      margin: 0 0 12px;
-      color: var(--navy);
-      padding-bottom: 10px;
-      border-bottom: 1px solid rgba(0,0,0,0.10);
-      font-size: 20px;
-    }
-    p{
-      margin: 0;
-      line-height: 1.55;
-      color: var(--muted);
-    }
+button{
+  width:100%;
+  margin-top:22px;
+  padding:16px;
+  background:var(--primary);
+  color:white;
+  border:none;
+  border-radius:10px;
+  font-size:17px;
+  font-weight:600;
+  cursor:pointer;
+}
 
-    /* ===============================
-       SERVICES (nice grid)
-       =============================== */
-    .services-grid{
-      display: grid;
-      gap: 12px;
-      grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
-      margin-top: 12px;
-    }
-    .service{
-      border: 1px solid var(--border);
-      border-radius: 14px;
-      padding: 14px;
-      background: rgba(0,51,102,0.02);
-    }
-    .service h3{
-      margin: 0 0 6px;
-      color: var(--text);
-      font-size: 16px;
-    }
-    .service p{
-      font-size: 14px;
-      color: var(--muted);
-    }
+button:hover{background:var(--accent);}
 
-    /* ===============================
-       FORM
-       =============================== */
-    label{
-      font-weight: 800;
-      display: block;
-      margin-top: 14px;
-      color: var(--navy);
-      font-size: 14px;
-    }
-    input, select{
-      width: 100%;
-      padding: 12px;
-      margin-top: 6px;
-      border-radius: 10px;
-      border: 2px solid var(--navy);
-      font-size: 16px;
-      outline: none;
-      background: #fff;
-    }
-    input:focus, select:focus{
-      border-color: var(--teal);
-      box-shadow: 0 0 0 4px var(--focus);
-    }
+/* TWO COLUMN IMAGES */
+.two-col-images{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  width:100%;
+}
 
-    .btn{
-      width: 100%;
-      background: var(--black);
-      color: #fff;
-      border: none;
-      padding: 16px;
-      margin-top: 18px;
-      border-radius: 10px;
-      font-size: 18px;
-      font-weight: 900;
-      cursor: pointer;
-      transition: 0.2s;
-    }
-    .btn:hover{ background: var(--teal); }
-    .btn:active{ transform: scale(0.99); }
+.two-col-images img{
+  width:100%;
+  height:280px;
+  object-fit:cover;
+  cursor:pointer;
+}
 
-    /* ===============================
-       GALLERY
-       =============================== */
-    .gallery-grid{
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-      gap: 14px;
-      margin-top: 14px;
-    }
-    .gallery-item{
-      text-align: center;
-    }
-    .gallery-item img{
-      width: 100%;
-      height: 150px;
-      object-fit: cover;
-      border-radius: 12px;
-      border: 2px solid var(--teal);
-      background: #fff;
-      cursor: zoom-in;
-      transition: 0.2s ease;
-    }
-    .gallery-item img:hover{
-      transform: translateY(-2px);
-      box-shadow: 0 10px 22px rgba(0,0,0,0.16);
-    }
-    .gallery-item p{
-      margin-top: 8px;
-      font-size: 13px;
-      font-weight: 800;
-      color: var(--navy);
-      text-align: center;
-    }
+/* REVIEWS */
+.review{
+  background:var(--soft);
+  padding:16px;
+  border-radius:10px;
+  margin-bottom:14px;
+  font-size:15px;
+}
 
-    /* ===============================
-       CONTACT SECTION
-       =============================== */
-    .contact-actions{
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
-      gap: 12px;
-      margin-top: 14px;
-    }
-    .contact-actions a{
-      text-decoration: none;
-      display: block;
-      padding: 14px;
-      border-radius: 14px;
-      font-weight: 900;
-      text-align: center;
-      border: 1px solid var(--border);
-      background: #fff;
-      color: var(--text);
-    }
-    .contact-actions a.primary{
-      background: var(--navy);
-      color: #fff;
-    }
-    .contact-actions a.accent{
-      background: var(--teal);
-      color: #fff;
-    }
+.review span{
+  display:block;
+  margin-top:6px;
+  font-weight:600;
+  color:var(--primary);
+}
 
-    /* ===============================
-       IMAGE MODAL (tap-to-zoom)
-       =============================== */
-    .modal{
-      position: fixed;
-      inset: 0;
-      background: rgba(0,0,0,0.75);
-      display: none;
-      align-items: center;
-      justify-content: center;
-      padding: 18px;
-      z-index: 120;
-    }
-    .modal.show{ display: flex; }
-    .modal img{
-      max-width: min(980px, 95vw);
-      max-height: 85vh;
-      border-radius: 14px;
-      border: 2px solid rgba(255,255,255,0.25);
-      box-shadow: 0 18px 40px rgba(0,0,0,0.35);
-      cursor: zoom-out;
-      background: #fff;
-    }
-    .modal .hint{
-      position: fixed;
-      bottom: 16px;
-      left: 50%;
-      transform: translateX(-50%);
-      color: rgba(255,255,255,0.9);
-      font-size: 13px;
-      font-weight: 700;
-      background: rgba(0,0,0,0.35);
-      padding: 8px 10px;
-      border-radius: 999px;
-      border: 1px solid rgba(255,255,255,0.15);
-    }
-  </style>
+/* TASKRABBIT */
+.tr-btn{
+  display:block;
+  margin-top:18px;
+  padding:14px;
+  background:#34a853;
+  color:white;
+  text-align:center;
+  text-decoration:none;
+  border-radius:10px;
+  font-weight:600;
+}
+
+/* MODAL */
+.modal{
+  display:none;
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,.85);
+  justify-content:center;
+  align-items:center;
+  z-index:2000;
+}
+
+.modal img{
+  max-width:92%;
+  max-height:92%;
+  border-radius:12px;
+}
+
+.modal.show{display:flex}
+
+/* MOBILE */
+@media(max-width:768px){
+  .two-col-images{
+    grid-template-columns:1fr;
+  }
+}
+</style>
 </head>
 
 <body>
-  <header>
-    <h1>Jillian's Cleaning</h1>
-    <p>Professional, Reliable & Sparkling Clean</p>
-  </header>
 
-  <!-- Top Nav -->
-  <div class="topbar">
-    <button class="menu-btn" onclick="toggleMenu()" aria-label="Open menu">☰</button>
-    <div class="brand">Jillian’s Cleaning</div>
-    <a class="topbar-cta" href="#contact">Contact</a>
-  </div>
+<header>
+  <h1>Jillian’s Cleaning & Home Care</h1>
+  <p>Serving Seattle & King County Surrounding Areas</p>
+</header>
 
-  <!-- Slide-out Menu -->
-  <div id="sideMenu" class="side-menu" aria-hidden="true">
-    <div class="side-menu-header">
-      <div class="side-title">Menu</div>
-      <button class="close-btn" onclick="toggleMenu()" aria-label="Close menu">✕</button>
-    </div>
+<div class="hero">
+  <img src="flyer.jpg" alt="Professional Cleaning Services Seattle">
+</div>
 
-    <a href="#services" onclick="closeMenu()">Services</a>
-    <a href="#book" onclick="closeMenu()">Book</a>
-    <a href="#gallery" onclick="closeMenu()">Gallery</a>
-    <a href="#contact" onclick="closeMenu()">Contact</a>
+<div class="container">
 
-    <div class="side-divider"></div>
+<div class="card">
+<h2>Services Offered</h2>
+<ul>
+  <li>Standard & Deep Cleaning</li>
+  <li>Organization & Decluttering</li>
+  <li>Laundry & Folding</li>
+  <li>Move In / Move Out Cleaning</li>
+  <li><strong>Pet Care & Pet-Friendly Homes</strong></li>
+</ul>
+<p>
+I take pride in detail-oriented work, respecting client preferences, and providing reliable,
+professional care you can trust.
+</p>
+</div>
 
-    <a class="side-action" href="sms:2062558039">Text Me</a>
-    <a class="side-action secondary" href="mailto:jillianmcwhorter98@gmail.com">Email Me</a>
-  </div>
+<div class="card">
+<h2>Book Now / Initial Consultation</h2>
 
-  <!-- Backdrop -->
-  <div id="backdrop" class="backdrop" onclick="closeMenu()"></div>
+<p class="book-note">
+After submitting your request, you’ll be connected directly with me to confirm availability and go over all details.
+I take a client-preference approach and tailor services to your specific needs, priorities, pets, and home.
+</p>
 
-  <div class="container">
-    <div class="card">
-      <h2>Welcome</h2>
-      <p>
-        Hi, I'm Jillian! I provide high-quality cleaning, organization, and home care services.
-        My goal is to make your life easier and your home a place of peace and clarity.
-      </p>
-    </div>
+<label>Service Type</label>
+<select id="service">
+  <option>Standard Cleaning</option>
+  <option>Deep Cleaning</option>
+  <option>Organization</option>
+  <option>Laundry & Folding</option>
+  <option>Move In / Out</option>
+  <option>Pet Care</option>
+</select>
 
-    <div class="card" id="services">
-      <h2>Services</h2>
-      <p>Choose what you need — I tailor every job to your preferences and priorities.</p>
+<label>Your Name</label>
+<input id="name">
 
-      <div class="services-grid">
-        <div class="service">
-          <h3>Standard Cleaning</h3>
-          <p>Kitchens, bathrooms, floors, dusting, reset & tidy.</p>
-        </div>
-        <div class="service">
-          <h3>Deep Cleaning</h3>
-          <p>Detail-focused scrubs, buildup removal, and shine.</p>
-        </div>
-        <div class="service">
-          <h3>Move In / Move Out</h3>
-          <p>Thorough turnover cleans to help you pass inspection.</p>
-        </div>
-        <div class="service">
-          <h3>Organization</h3>
-          <p>Declutter, create systems, and make your space feel easier.</p>
-        </div>
-        <div class="service">
-          <h3>Laundry & Folding</h3>
-          <p>Wash/dry, fold, and put away (if you want).</p>
-        </div>
-        <div class="service">
-          <h3>Moving & Packing</h3>
-          <p>Pack neatly, label boxes, and protect fragile items.</p>
-        </div>
-      </div>
-    </div>
+<label>Preferred Date</label>
+<input type="date" id="date">
 
-    <div class="card" id="book">
-      <h2>Book a Session</h2>
+<label>Preferred Time</label>
+<input type="time" id="time">
 
-      <label for="service">Service Type</label>
-      <select id="service">
-        <option value="Standard Cleaning">Standard Cleaning</option>
-        <option value="Deep Cleaning">Deep Cleaning</option>
-        <option value="Organization">Organization</option>
-        <option value="Laundry & Folding">Laundry & Folding</option>
-        <option value="Moving & Packing">Moving & Packing</option>
-        <option value="Pet Care">Pet Care</option>
-        <option value="Move In/Out">Move In/Out</option>
-      </select>
+<button onclick="sendSMS()">Book Now / Initial Consultation</button>
+</div>
 
-      <label for="custName">Your Name</label>
-      <input type="text" id="custName" placeholder="Enter your name" />
+</div>
 
-      <label for="bookDate">Preferred Date</label>
-      <input type="date" id="bookDate" />
+<div class="two-col-images">
+  <img src="sinkbefore.after.png" onclick="openModal(this.src)">
+  <img src="toiletbefore.after.png" onclick="openModal(this.src)">
+</div>
 
-      <label for="bookTime">Preferred Time</label>
-      <input type="time" id="bookTime" />
+<div class="container">
 
-      <button class="btn" onclick="sendJillianSMS()">Send Booking Request</button>
-    </div>
+<div class="card">
+<h2>Client Reviews</h2>
 
-    <div class="card" id="gallery">
-      <h2>Full Gallery</h2>
-      <p>Tap any photo to enlarge.</p>
+<div class="review">
+“Very detail-oriented, reliable, and respectful of my space. Everything was exactly how I wanted it.”
+<span>— TaskRabbit Client</span>
+</div>
 
-      <div class="gallery-grid">
-        <div class="gallery-item">
-          <img src="sinkbefore.after.png" alt="Sink before and after cleaning" />
-          <p>Sparkling Sinks</p>
-        </div>
+<div class="review">
+“Great with my pets and very professional. I felt comfortable having her in my home.”
+<span>— Repeat Client</span>
+</div>
 
-        <div class="gallery-item">
-          <img src="toiletbefore.after.png" alt="Toilet before and after cleaning" />
-          <p>Bathroom Deep Clean</p>
-        </div>
+<div class="review">
+“On time, thorough, and clearly takes pride in her work.”
+<span>— Seattle Client</span>
+</div>
 
-        <div class="gallery-item">
-          <img src="after.move-out.clean.jpg" alt="Move out cleaning results" />
-          <p>Move-Out Clean</p>
-        </div>
+<div class="card">
+<h2>Contact</h2>
+<p><strong>Phone / Text:</strong> 206-255-8039</p>
+<p><strong>Service Area:</strong> Seattle & King County surrounding areas</p>
+</div>
 
-        <div class="gallery-item">
-          <img src="packingjob.jpg" alt="Professional packing service" />
-          <p>Expert Packing</p>
-        </div>
+</div>
 
-        <div class="gallery-item">
-          <img src="laundry.png" alt="Laundry and folding service" />
-          <p>Laundry & Folding</p>
-        </div>
+<div class="modal" id="modal" onclick="closeModal()">
+  <img id="modalImg">
+</div>
 
-        <div class="gallery-item">
-          <img src="yard.cleanup.png" alt="Yard cleanup service" />
-          <p>Yard Cleanup</p>
-        </div>
+<script>
+function openModal(src){
+  modalImg.src = src;
+  modal.classList.add('show');
+}
+function closeModal(){
+  modal.classList.remove('show');
+}
+function sendSMS(){
+  const msg = `Hi Jillian! I’d like to schedule an initial consultation for ${service.value}. My name is ${name.value}.`;
+  window.location.href = `sms:2062558039?body=${encodeURIComponent(msg)}`;
+}
+</script>
 
-        <div class="gallery-item">
-          <img src="airbnb.png" alt="Airbnb cleaning example" />
-          <p>Airbnb Reset</p>
-        </div>
-
-        <div class="gallery-item">
-          <img src="flyer.jpg" alt="Jillian's Cleaning flyer" />
-          <p>Service Flyer</p>
-        </div>
-      </div>
-    </div>
-
-    <div class="card" id="contact">
-      <h2>Contact Me</h2>
-      <p>Fastest response: text me. You can also email anytime.</p>
-
-      <div class="contact-actions">
-        <a class="primary" href="sms:2062558039">📱 Text: (206) 255-8039</a>
-        <a class="accent" href="tel:2062558039">📞 Call: (206) 255-8039</a>
-        <a href="mailto:jillianmcwhorter98@gmail.com">✉️ Email: jillianmcwhorter98@gmail.com</a>
-      </div>
-    </div>
-  </div>
-
-  <!-- Tap-to-zoom modal -->
-  <div id="imgModal" class="modal" aria-hidden="true">
-    <img id="modalImg" alt="Enlarged photo" />
-    <div class="hint">Tap anywhere to close</div>
-  </div>
-
-  <script>
-    // ===== Booking SMS =====
-    function sendJillianSMS() {
-      const myNumber = "2062558039";
-      const service = document.getElementById("service").value;
-      const name = document.getElementById("custName").value.trim();
-      const date = document.getElementById("bookDate").value;
-      const time = document.getElementById("bookTime").value;
-
-      if (!name || !date || !time) {
-        alert("Please provide your name, date, and time!");
-        return;
-      }
-
-      const message = `Hi Jillian! I'd like to book ${service} for ${date} at ${time}. My name is ${name}.`;
-      const smsUrl = `sms:${myNumber}?body=${encodeURIComponent(message)}`;
-      window.location.href = smsUrl;
-    }
-
-    // ===== Side menu =====
-    function toggleMenu() {
-      const menu = document.getElementById("sideMenu");
-      const backdrop = document.getElementById("backdrop");
-      const open = menu.classList.toggle("open");
-      backdrop.classList.toggle("show", open);
-      menu.setAttribute("aria-hidden", (!open).toString());
-    }
-    function closeMenu() {
-      const menu = document.getElementById("sideMenu");
-      const backdrop = document.getElementById("backdrop");
-      menu.classList.remove("open");
-      backdrop.classList.remove("show");
-      menu.setAttribute("aria-hidden", "true");
-    }
-
-    // Close menu on ESC
-    document.addEventListener("keydown", (e) => {
-      if (e.key === "Escape") {
-        closeMenu();
-        closeModal();
-      }
-    });
-
-    // ===== Tap-to-zoom gallery =====
-    const modal = document.getElementById("imgModal");
-    const modalImg = document.getElementById("modalImg");
-
-    function openModal(src, alt) {
-      modalImg.src = src;
-      modalImg.alt = alt || "Enlarged photo";
-      modal.classList.add("show");
-      modal.setAttribute("aria-hidden", "false");
-    }
-
-    function closeModal() {
-      modal.classList.remove("show");
-      modal.setAttribute("aria-hidden", "true");
-      modalImg.src = "";
-    }
-
-    // Tap backdrop or image to close
-    modal.addEventListener("click", closeModal);
-
-    // Attach click handler to all gallery images
-    document.querySelectorAll(".gallery-item img").forEach((img) => {
-      img.addEventListener("click", () => openModal(img.getAttribute("src"), img.getAttribute("alt")));
-    });
-  </script>
 </body>
 </html>
