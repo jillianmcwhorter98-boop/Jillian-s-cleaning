@@ -9,8 +9,6 @@
 :root{
   --primary:#0b3c5d;
   --accent:#000000;
-  --light:#000000; /* background black */
-  --dark:#1a1a1a;
   --soft:#e3ecf2;
 }
 
@@ -19,7 +17,7 @@
 body{
   margin:0;
   font-family:'Segoe UI',sans-serif;
-  background:#000000; /* FULL PAGE BLACK */
+  background:#000000;
   color:#ffffff;
 }
 
@@ -34,7 +32,7 @@ header{
 header h1{margin:0;font-size:28px;}
 header p{margin-top:8px;opacity:.95}
 
-/* HERO IMAGE */
+/* HERO */
 .hero img{
   width:100%;
   height:420px;
@@ -47,17 +45,17 @@ header p{margin-top:8px;opacity:.95}
   max-width:600px;
   margin:auto;
   padding:22px;
-  background:transparent; /* IMPORTANT */
+  background:transparent;
 }
 
 .card{
   background:#ffffff;
+  color:#1a1a1a;
   border-radius:14px;
   padding:24px;
   margin-bottom:28px;
   box-shadow:0 6px 18px rgba(0,0,0,.45);
   border-left:6px solid #000000;
-  color:#1a1a1a;
 }
 
 h2{
@@ -85,7 +83,7 @@ input,select,textarea{
   padding:13px;
   margin-top:6px;
   border-radius:8px;
-  border:2px solid #e3ecf2;
+  border:2px solid var(--soft);
   font-size:16px;
 }
 
@@ -114,11 +112,14 @@ button:hover{
 }
 
 /* IMAGES */
+.image-section{
+  background:#000000;
+  padding:30px 0;
+}
+
 .two-col-images{
   display:grid;
   grid-template-columns:1fr 1fr;
-  width:100%;
-  background:#000000; /* KEEP BLACK */
 }
 
 .two-col-images img{
@@ -130,7 +131,7 @@ button:hover{
 
 /* REVIEWS */
 .review{
-  background:#e3ecf2;
+  background:var(--soft);
   padding:16px;
   border-radius:10px;
   margin-bottom:14px;
@@ -185,55 +186,126 @@ button:hover{
 
 <div class="container">
 
-<div class="card">
-<h2>Services Offered</h2>
-<ul>
-  <li>Standard & Deep Cleaning</li>
-  <li>Organization & Decluttering</li>
-  <li>Laundry & Folding</li>
-  <li>Move In / Move Out Cleaning</li>
-  <li>Pet Care & Pet-Friendly Homes</li>
-</ul>
-<p>
-I take pride in detail-oriented work, respecting client preferences, and providing reliable,
-professional care you can trust.
-</p>
+  <div class="card">
+    <h2>Services Offered</h2>
+    <ul>
+      <li>Standard & Deep Cleaning</li>
+      <li>Organization & Decluttering</li>
+      <li>Laundry & Folding</li>
+      <li>Move In / Move Out Cleaning</li>
+      <li>Pet Care & Pet-Friendly Homes</li>
+    </ul>
+    <p>
+      I take pride in detail-oriented work, respecting client preferences, and providing reliable,
+      professional care you can trust.
+    </p>
+  </div>
+
+  <div class="card">
+    <h2>Book Now / Initial Consultation</h2>
+
+    <p class="book-note">
+      After submitting your request, you’ll be connected directly with me to confirm availability and go over all details.
+      I take a client-preference approach and tailor services to your specific needs, priorities, pets, and home.
+    </p>
+
+    <label>Service Type</label>
+    <select id="service">
+      <option>Standard Cleaning</option>
+      <option>Deep Cleaning</option>
+      <option>Organization</option>
+      <option>Laundry & Folding</option>
+      <option>Move In / Out</option>
+      <option>Pet Care</option>
+    </select>
+
+    <label>Your Name</label>
+    <input id="name" type="text">
+
+    <label>Preferred Date</label>
+    <input id="date" type="date">
+
+    <label>Preferred Time</label>
+    <input id="time" type="time">
+
+    <label>Notes / Special Instructions</label>
+    <textarea id="notes" rows="4"
+      placeholder="Any preferences, pets, or special requests..."></textarea>
+
+    <button onclick="sendSMS()">Book Now / Initial Consultation</button>
+  </div>
+
 </div>
 
-<div class="card">
-<h2>Book Now / Initial Consultation</h2>
-
-<p class="book-note">
-After submitting your request, you’ll be connected directly with me to confirm availability and go over all details.
-I take a client-preference approach and tailor services to your specific needs, priorities, pets, and home.
-</p>
-
-<label>Service Type</label>
-<select>
-  <option>Standard Cleaning</option>
-  <option>Deep Cleaning</option>
-  <option>Organization</option>
-  <option>Laundry & Folding</option>
-  <option>Move In / Out</option>
-  <option>Pet Care</option>
-</select>
-
-<label>Your Name</label>
-<input>
-
-<label>Preferred Date</label>
-<input type="date">
-
-<label>Preferred Time</label>
-<input type="time">
-
-<label>Notes / Special Instructions</label>
-<textarea rows="4"></textarea>
-
-<button>Book Now / Initial Consultation</button>
+<div class="image-section">
+  <div class="two-col-images">
+    <img src="sinkbefore.after.png" onclick="openModal(this.src)">
+    <img src="toiletbefore.after.png" onclick="openModal(this.src)">
+  </div>
 </div>
 
+<div class="container">
+
+  <div class="card">
+    <h2>Client Reviews</h2>
+
+    <div class="review">
+      “Very detail-oriented, reliable, and respectful of my space. Everything was exactly how I wanted it.”
+      <span>— TaskRabbit Client</span>
+    </div>
+
+    <div class="review">
+      “Great with my pets and very professional. I felt comfortable having her in my home.”
+      <span>— Repeat Client</span>
+    </div>
+
+    <div class="review">
+      “On time, thorough, and clearly takes pride in her work.”
+      <span>— Seattle Client</span>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>Contact</h2>
+    <p><strong>Phone / Text:</strong> <a href="tel:12062558039">206-255-8039</a></p>
+    <p><strong>Service Area:</strong> Seattle & King County surrounding areas</p>
+  </div>
+
 </div>
+
+<div class="modal" id="modal" onclick="closeModal()">
+  <img id="modalImg">
+</div>
+
+<script>
+const modal = document.getElementById('modal');
+const modalImg = document.getElementById('modalImg');
+
+function openModal(src){
+  modalImg.src = src;
+  modal.classList.add('show');
+}
+
+function closeModal(){
+  modal.classList.remove('show');
+}
+
+function sendSMS(){
+  const service = document.getElementById('service').value;
+  const date = document.getElementById('date').value;
+  const time = document.getElementById('time').value;
+  const name = document.getElementById('name').value;
+  const notes = document.getElementById('notes').value;
+
+  let msg = `Hi Jillian! I’d like to schedule an initial consultation for ${service}`;
+  if(date) msg += ` on ${date}`;
+  if(time) msg += ` at ${time}`;
+  if(name) msg += `. My name is ${name}.`;
+  if(notes) msg += ` Notes: ${notes}`;
+
+  window.location.href = `sms:2062558039?body=${encodeURIComponent(msg)}`;
+}
+</script>
 
 </body>
 </html>
