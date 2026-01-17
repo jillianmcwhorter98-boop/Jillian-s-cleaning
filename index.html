@@ -8,8 +8,8 @@
 <style>
 :root{
   --primary:#0b3c5d;
-  --accent:#1fa2a6;
-  --light:#f4f7fb;
+  --accent:#000000;
+  --light:#000000; /* background black */
   --dark:#1a1a1a;
   --soft:#e3ecf2;
 }
@@ -19,12 +19,12 @@
 body{
   margin:0;
   font-family:'Segoe UI',sans-serif;
-  background:var(--light);
-  color:var(--dark);
+  background:#000000; /* FULL PAGE BLACK */
+  color:#ffffff;
 }
 
 /* HEADER */
-  header{
+header{
   background:#000000;
   color:white;
   padding:40px 20px;
@@ -47,20 +47,22 @@ header p{margin-top:8px;opacity:.95}
   max-width:600px;
   margin:auto;
   padding:22px;
+  background:transparent; /* IMPORTANT */
 }
 
 .card{
-  background:white;
+  background:#ffffff;
   border-radius:14px;
   padding:24px;
   margin-bottom:28px;
-  box-shadow:0 6px 16px rgba(0,0,0,.1);
-  border-left:6px solid var(--accent);
+  box-shadow:0 6px 18px rgba(0,0,0,.45);
+  border-left:6px solid #000000;
+  color:#1a1a1a;
 }
 
 h2{
   margin-top:0;
-  color:var(--primary);
+  color:#0b3c5d;
 }
 
 /* BOOK NOTE */
@@ -78,17 +80,19 @@ label{
   margin-top:14px;
 }
 
-input,select{
+input,select,textarea{
   width:100%;
   padding:13px;
   margin-top:6px;
   border-radius:8px;
-  border:2px solid var(--soft);
+  border:2px solid #e3ecf2;
   font-size:16px;
 }
 
-input:focus,select:focus{
-  border-color:var(--accent);
+input:focus,
+select:focus,
+textarea:focus{
+  border-color:#000000;
   outline:none;
 }
 
@@ -96,7 +100,7 @@ button{
   width:100%;
   margin-top:22px;
   padding:16px;
-  background:var(--primary);
+  background:#0b3c5d;
   color:white;
   border:none;
   border-radius:10px;
@@ -105,13 +109,16 @@ button{
   cursor:pointer;
 }
 
-button:hover{background:var(--accent);}
+button:hover{
+  background:#000000;
+}
 
-/* TWO COLUMN IMAGES */
+/* IMAGES */
 .two-col-images{
   display:grid;
   grid-template-columns:1fr 1fr;
   width:100%;
+  background:#000000; /* KEEP BLACK */
 }
 
 .two-col-images img{
@@ -123,7 +130,7 @@ button:hover{background:var(--accent);}
 
 /* REVIEWS */
 .review{
-  background:var(--soft);
+  background:#e3ecf2;
   padding:16px;
   border-radius:10px;
   margin-bottom:14px;
@@ -134,20 +141,7 @@ button:hover{background:var(--accent);}
   display:block;
   margin-top:6px;
   font-weight:600;
-  color:var(--primary);
-}
-
-/* TASKRABBIT */
-.tr-btn{
-  display:block;
-  margin-top:18px;
-  padding:14px;
-  background:#34a853;
-  color:white;
-  text-align:center;
-  text-decoration:none;
-  border-radius:10px;
-  font-weight:600;
+  color:#0b3c5d;
 }
 
 /* MODAL */
@@ -155,7 +149,7 @@ button:hover{background:var(--accent);}
   display:none;
   position:fixed;
   inset:0;
-  background:rgba(0,0,0,.85);
+  background:rgba(0,0,0,.9);
   justify-content:center;
   align-items:center;
   z-index:2000;
@@ -198,7 +192,7 @@ button:hover{background:var(--accent);}
   <li>Organization & Decluttering</li>
   <li>Laundry & Folding</li>
   <li>Move In / Move Out Cleaning</li>
-  <li>Pet Care & Pet-Friendly Homes</strong></li>
+  <li>Pet Care & Pet-Friendly Homes</li>
 </ul>
 <p>
 I take pride in detail-oriented work, respecting client preferences, and providing reliable,
@@ -215,7 +209,7 @@ I take a client-preference approach and tailor services to your specific needs, 
 </p>
 
 <label>Service Type</label>
-<select id="service">
+<select>
   <option>Standard Cleaning</option>
   <option>Deep Cleaning</option>
   <option>Organization</option>
@@ -225,77 +219,21 @@ I take a client-preference approach and tailor services to your specific needs, 
 </select>
 
 <label>Your Name</label>
-<input id="name">
+<input>
 
 <label>Preferred Date</label>
-<input type="date" id="date">
+<input type="date">
 
 <label>Preferred Time</label>
-<input type="time" id="time">
+<input type="time">
 
 <label>Notes / Special Instructions</label>
-<textarea id="notes" placeholder="Any preferences, pets, or special requests..." rows="4" style="width:100%; padding:12px; border-radius:8px; border:2px solid #e3ecf2; font-size:16px;"></textarea>
-  
-<button onclick="sendSMS()">Book Now / Initial Consultation</button>
+<textarea rows="4"></textarea>
+
+<button>Book Now / Initial Consultation</button>
 </div>
 
 </div>
-
-<div class="two-col-images">
-  <img src="sinkbefore.after.png" onclick="openModal(this.src)">
-  <img src="toiletbefore.after.png" onclick="openModal(this.src)">
-</div>
-
-<div class="container">
-
-<div class="card">
-<h2>Client Reviews</h2>
-
-<div class="review">
-“Very detail-oriented, reliable, and respectful of my space. Everything was exactly how I wanted it.”
-<span>— TaskRabbit Client</span>
-</div>
-
-<div class="review">
-“Great with my pets and very professional. I felt comfortable having her in my home.”
-<span>— Repeat Client</span>
-</div>
-
-<div class="review">
-“On time, thorough, and clearly takes pride in her work.”
-<span>— Seattle Client</span>
-</div>
-
-<div class="card">
-<h2>Contact</h2>
-<p><strong>Phone / Text:</strong> 206-255-8039</p>
-<p><strong>Service Area:</strong> Seattle & King County surrounding areas</p>
-</div>
-
-</div>
-
-<div class="modal" id="modal" onclick="closeModal()">
-  <img id="modalImg">
-</div>
-
-<script>
-function openModal(src){
-  modalImg.src = src;
-  modal.classList.add('show');
-}
-function closeModal(){
-  modal.classList.remove('show');
-}
-function sendSMS(){
-  const msg = `Hi Jillian! I’d like to schedule an initial consultation for ${service.value} on ${date.value} at ${time.value}. My name is ${name.value}.`;
-  
-  const notes = document.getElementById('notes').value;
-  if(notes){
-    msg += ` Notes: ${notes}`;
-  }
-  
-  window.location.href = `sms:2062558039?body=${encodeURIComponent(msg)}`;
-}
 
 </body>
 </html>
