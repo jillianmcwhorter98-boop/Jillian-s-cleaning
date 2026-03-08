@@ -17,20 +17,20 @@
 body{
   margin:0;
   font-family:'Segoe UI',sans-serif;
-  background:#000000;
-  color:#ffffff;
+  background:#000;
+  color:#fff;
 }
 
 /* HEADER */
 header{
-  background:#000000;
+  background:#000;
   color:white;
   padding:24px 20px;
   text-align:center;
 }
 
 header h1{margin:0;font-size:28px;}
-header p{margin-top:8px;opacity:.95}
+header p{margin-top:8px;opacity:.9}
 
 /* NAV */
 .main-nav{
@@ -40,17 +40,17 @@ header p{margin-top:8px;opacity:.95}
   gap:16px;
   flex-wrap:wrap;
 }
+
 .main-nav a{
-  color:var(--soft);
+  color:#e3ecf2;
   text-decoration:none;
   padding:8px 12px;
   border-radius:8px;
-  background:transparent;
   font-weight:600;
 }
-.main-nav a:hover, .main-nav a:focus{
-  background:rgba(255,255,255,0.06);
-  outline:none;
+
+.main-nav a:hover{
+  background:rgba(255,255,255,0.08);
 }
 
 /* HERO */
@@ -58,38 +58,28 @@ header p{margin-top:8px;opacity:.95}
   width:100%;
   height:420px;
   object-fit:cover;
-  display:block;
 }
 
 /* LAYOUT */
 .container{
-  max-width:600px;
+  max-width:650px;
   margin:auto;
   padding:22px;
-  background:transparent;
 }
 
 .card{
-  background:#ffffff;
-  color:#1a1a1a;
+  background:#fff;
+  color:#111;
   border-radius:14px;
   padding:24px;
   margin-bottom:28px;
   box-shadow:0 6px 18px rgba(0,0,0,.45);
-  border-left:6px solid #000000;
+  border-left:6px solid #000;
 }
 
 h2{
   margin-top:0;
   color:#0b3c5d;
-}
-
-/* BOOK NOTE */
-.book-note{
-  font-size:15px;
-  color:#555;
-  margin-bottom:18px;
-  line-height:1.5;
 }
 
 /* FORM */
@@ -104,17 +94,8 @@ input,select,textarea{
   padding:13px;
   margin-top:6px;
   border-radius:8px;
-  border:2px solid var(--soft);
+  border:2px solid #e3ecf2;
   font-size:16px;
-  background:#fff;
-  color:#111;
-}
-
-input:focus,
-select:focus,
-textarea:focus{
-  border-color:#000000;
-  outline:none;
 }
 
 button{
@@ -131,43 +112,30 @@ button{
 }
 
 button:hover{
-  background:#000000;
+  background:#000;
 }
 
-/* IMAGES */
+/* IMAGE GRID */
 .image-section{
-  background:#000000;
+  background:#000;
   padding:30px 0;
 }
 
-.two-col-images{
+.gallery-grid{
   display:grid;
   grid-template-columns:1fr 1fr;
   gap:12px;
+  max-width:900px;
+  margin:auto;
+  padding:0 20px;
 }
 
-.two-col-images img{
+.gallery-grid img{
   width:100%;
-  height:280px;
+  height:260px;
   object-fit:cover;
-  cursor:pointer;
   border-radius:8px;
-}
-
-/* REVIEWS */
-.review{
-  background:var(--soft);
-  padding:16px;
-  border-radius:10px;
-  margin-bottom:14px;
-  font-size:15px;
-}
-
-.review span{
-  display:block;
-  margin-top:6px;
-  font-weight:600;
-  color:#0b3c5d;
+  cursor:pointer;
 }
 
 /* MODAL */
@@ -179,21 +147,19 @@ button:hover{
   justify-content:center;
   align-items:center;
   z-index:2000;
-  padding:20px;
 }
 
 .modal img{
   max-width:92%;
   max-height:92%;
   border-radius:12px;
-  box-shadow:0 10px 30px rgba(0,0,0,.6);
 }
 
 .modal.show{display:flex}
 
 /* MOBILE */
 @media(max-width:768px){
-  .two-col-images{
+  .gallery-grid{
     grid-template-columns:1fr;
   }
 }
@@ -203,231 +169,186 @@ button:hover{
 <body>
 
 <header>
-  <h1>Jillian’s Cleaning & Home Care</h1>
-  <p>Serving Seattle & King County Surrounding Areas</p>
+<h1>Jillian’s Cleaning & Home Care</h1>
+<p>Serving Seattle & King County Surrounding Areas</p>
 
-  <nav class="main-nav" aria-label="Main navigation">
-    <a href="#services">Services</a>
-    <a href="#booking">Book</a>
-    <a href="#gallery">Gallery</a>
-    <a href="#reviews">Reviews</a>
-    <a href="#contact">Contact</a>
-  </nav>
+<nav class="main-nav">
+<a href="#services">Services</a>
+<a href="#booking">Book</a>
+<a href="#gallery">Gallery</a>
+<a href="#reviews">Reviews</a>
+<a href="#contact">Contact</a>
+</nav>
 </header>
 
 <div class="hero">
-  <img src="flyer.jpg" alt="Professional Cleaning Services Seattle">
+<img src="flyer.jpg" alt="Seattle Cleaning Services">
 </div>
 
 <div class="container" id="services">
 
-  <div class="card">
-    <h2>Services Offered</h2>
-    <ul>
-      <li>Standard & Deep Cleaning</li>
-      <li>Organization & Decluttering</li>
-      <li>Laundry & Folding</li>
-      <li>Move In / Move Out Cleaning</li>
-      <li>Pet Care & Pet-Friendly Homes</li>
-    </ul>
-    <p>
-      I take pride in detail-oriented work, respecting client preferences, and providing reliable,
-      professional care you can trust.
-    </p>
-  </div>
+<div class="card">
+<h2>Services Offered</h2>
+<ul>
+<li>Standard & Deep Cleaning</li>
+<li>Organization & Decluttering</li>
+<li>Laundry & Folding</li>
+<li>Move In / Move Out Cleaning</li>
+<li>Pet Care & Pet-Friendly Homes</li>
+</ul>
 
-  <div class="card" id="booking">
-    <h2>Book Now / Initial Consultation</h2>
+<p>
+Detail-oriented, reliable cleaning tailored to your home,
+preferences, and pets.
+</p>
+</div>
 
-    <p class="book-note">
-      After submitting your request, you’ll be connected directly with me to confirm availability and go over all details.
-      I take a client-preference approach and tailor services to your specific needs, priorities, pets, and home.
-    </p>
+<div class="card" id="booking">
 
-    <label for="service">Service Type</label>
-    <select id="service" name="service">
-      <option>Standard Cleaning</option>
-      <option>Deep Cleaning</option>
-      <option>Organization</option>
-      <option>Laundry & Folding</option>
-      <option>Move In / Out</option>
-      <option>Pet Care</option>
-    </select>
+<h2>Book Initial Consultation</h2>
 
-    <label for="name">Your Name</label>
-    <input id="name" name="name" type="text" placeholder="Full name" autocomplete="name" required>
+<label>Service</label>
+<select id="service">
+<option>Standard Cleaning</option>
+<option>Deep Cleaning</option>
+<option>Organization</option>
+<option>Laundry</option>
+<option>Move In / Out</option>
+<option>Pet Care</option>
+</select>
 
-    <label for="date">Preferred Date</label>
-    <input id="date" name="date" type="date">
+<label>Your Name</label>
+<input id="name" placeholder="Full name">
 
-    <label for="time">Preferred Time</label>
-    <input id="time" name="time" type="time">
+<label>Date</label>
+<input id="date" type="date">
 
-    <label for="notes">Notes / Special Instructions</label>
-    <textarea id="notes" name="notes" rows="4"
-      placeholder="Any preferences, pets, or special requests..."></textarea>
+<label>Time</label>
+<input id="time" type="time">
 
-    <button id="bookBtn" type="button" aria-label="Book initial consultation">Book Now / Initial Consultation</button>
-  </div>
+<label>Notes</label>
+<textarea id="notes"></textarea>
 
+<button onclick="sendSMS()">Book Now</button>
+
+</div>
 </div>
 
 <div class="image-section" id="gallery">
-  <div class="two-col-images">
-    <img src="sinkbefore.after.png" alt="Sink before and after cleaning" class="gallery-img">
-    <img src="toiletbefore.after.png" alt="Toilet before and after cleaning" class="gallery-img">
-  </div>
+
+<div class="gallery-grid">
+
+<img src="sinkbefore.after.png" class="gallery-img">
+<img src="toiletbefore.after.png" class="gallery-img">
+
+</div>
 </div>
 
 <div class="container">
 
-  <div class="card" id="reviews">
-    <h2>Client Reviews</h2>
+<div class="card" id="reviews">
+<h2>Client Reviews</h2>
 
-    <div class="review">
-      “Very detail-oriented, reliable, and respectful of my space. Everything was exactly how I wanted it.”
-      <span>— TaskRabbit Client</span>
-    </div>
+<div class="gallery-grid">
 
-    <div class="review">
-      “Great with my pets and very professional. I felt comfortable having her in my home.”
-      <span>— Repeat Client</span>
-    </div>
-
-    <div class="review">
-      “On time, thorough, and clearly takes pride in her work.”
-      <span>— Seattle Client</span>
-    </div>
-  </div>
-
-  <div class="card" id="contact">
-    <h2>Contact</h2>
-    <p><strong>Phone / Text:</strong> <a href="tel:12062558039">206-255-8039</a></p>
-    <p><strong>Service Area:</strong> Seattle & King County surrounding areas</p>
-  </div>
+<img src="review.png" class="gallery-img">
+<img src="review1.png" class="gallery-img">
+<img src="review2.png" class="gallery-img">
+<img src="review3.png" class="gallery-img">
+<img src="review4.png" class="gallery-img">
+<img src="review5.png" class="gallery-img">
+<img src="review6.png" class="gallery-img">
+<img src="review7.png" class="gallery-img">
+<img src="review8.png" class="gallery-img">
+<img src="review9.png" class="gallery-img">
+<img src="review10.png" class="gallery-img">
+<img src="review11.png" class="gallery-img">
+<img src="review12.png" class="gallery-img">
+<img src="review13.png" class="gallery-img">
+<img src="review14.png" class="gallery-img">
+<img src="review15.png" class="gallery-img">
+<img src="review16.png" class="gallery-img">
+<img src="review17.png" class="gallery-img">
+<img src="review18.png" class="gallery-img">
+<img src="review19.png" class="gallery-img">
 
 </div>
+</div>
 
-<div class="modal" id="modal" role="dialog" aria-modal="true" aria-hidden="true">
-  <img id="modalImg" alt="">
+<div class="card" id="contact">
+<h2>Contact</h2>
+
+<p>
+<strong>Phone / Text:</strong>
+<a href="tel:12062558039" style="color:black;font-weight:600;text-decoration:none;">
+206-255-8039
+</a>
+</p>
+
+<p>
+<strong>Service Area:</strong>
+Seattle & King County surrounding areas
+</p>
+
+</div>
+</div>
+
+<div class="modal" id="modal">
+<img id="modalImg">
 </div>
 
 <script>
-/* Gallery modal behavior:
-   - Use event listeners (no inline handlers)
-   - Close modal when clicking the overlay or pressing Escape
-   - Prevent closing when clicking the image itself
-*/
-const modal = document.getElementById('modal');
-const modalImg = document.getElementById('modalImg');
 
-function openModal(src, alt){
-  modalImg.src = src;
-  modalImg.alt = alt || '';
-  modal.classList.add('show');
-  modal.setAttribute('aria-hidden', 'false');
-  document.body.style.overflow = 'hidden';
+/* GALLERY MODAL */
+
+const modal=document.getElementById("modal")
+const modalImg=document.getElementById("modalImg")
+
+document.querySelectorAll(".gallery-img").forEach(img=>{
+img.onclick=()=>{
+modal.classList.add("show")
+modalImg.src=img.src
+}
+})
+
+modal.onclick=()=>{
+modal.classList.remove("show")
 }
 
-function closeModal(){
-  modal.classList.remove('show');
-  modal.setAttribute('aria-hidden', 'true');
-  modalImg.src = '';
-  document.body.style.overflow = '';
-}
+/* BOOK BUTTON */
 
-document.querySelectorAll('.gallery-img').forEach(img => {
-  img.addEventListener('click', () => openModal(img.src, img.alt));
-});
-
-// Close when clicking the overlay (but not when clicking the image)
-modal.addEventListener('click', (e) => {
-  if(e.target === modal) closeModal();
-});
-
-// Close with Escape key
-document.addEventListener('keydown', (e) => {
-  if(e.key === 'Escape' && modal.classList.contains('show')) {
-    closeModal();
-  }
-});
-
-/* Booking button behavior with name validation and SMS fallback
-   - On mobile: attempt sms: link
-   - On desktop: fallback to mailto (replace placeholder email below)
-*/
 function sendSMS(){
-  const service = document.getElementById('service').value;
-  const date = document.getElementById('date').value;
-  const time = document.getElementById('time').value;
-  const name = (document.getElementById('name').value || '').trim();
-  const notes = (document.getElementById('notes').value || '').trim();
 
-  if(!name){
-    alert('Please enter your name before booking.');
-    document.getElementById('name').focus();
-    return;
-  }
+const service=document.getElementById("service").value
+const name=document.getElementById("name").value
+const date=document.getElementById("date").value
+const time=document.getElementById("time").value
+const notes=document.getElementById("notes").value
 
-  let msg = `Hi Jillian! I'd like to schedule an initial consultation for ${service}`;
-  if(date) msg += ` on ${date}`;
-  if(time) msg += ` at ${time}`;
-  msg += `. My name is ${name}.`;
-  if(notes) msg += ` Notes: ${notes}`;
-
-  const body = encodeURIComponent(msg);
-
-  // Detect mobile devices (simple UA check)
-  const isMobile = /Mobi|Android|iPhone|iPad/i.test(navigator.userAgent);
-
-  if(isMobile){
-    // sms URI: some platforms accept ?body, some accept &body; try the ?body form first.
-    const smsUrl = `sms:2062558039?body=${body}`;
-    window.location.href = smsUrl;
-  } else {
-    // Desktop fallback: mailto. Replace your-email@example.com with the desired recipient.
-    const subject = encodeURIComponent('Booking request: ' + service);
-    const mailto = `mailto:your-email@example.com?subject=${subject}&body=${body}`;
-    window.location.href = mailto;
-  }
+if(!name){
+alert("Please enter your name")
+return
 }
 
-document.getElementById('bookBtn').addEventListener('click', sendSMS);
+let msg=`Hi Jillian! I'd like to book ${service}. My name is ${name}.`
+
+if(date) msg+=` Date: ${date}`
+if(time) msg+=` Time: ${time}`
+if(notes) msg+=` Notes: ${notes}`
+
+const body=encodeURIComponent(msg)
+
+const isMobile=/Mobi|Android|iPhone/i.test(navigator.userAgent)
+
+if(isMobile){
+window.location.href=`sms:2062558039?body=${body}`
+}else{
+window.location.href=`mailto:your-email@example.com?subject=Booking Request&body=${body}`
+}
+
+}
+
 </script>
 
-</body>
-</html>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="styles.css">
-    <title>Jillian's Cleaning</title>
-</head>
-<body>
-    </section>
-    <section id="reviews">
-        <h2>Reviews</h2>
-        <div class="responsive-gallery">
-            <img src="review.png" alt="Review 1">
-            <img src="review1.png" alt="Review 2">
-            <img src="review2.png" alt="Review 3">
-            <img src="review3.png" alt="Review 4">
-            <img src="review4.png" alt="Review 5">
-            <img src="review5.png" alt="Review 6">
-            <img src="review6.png" alt="Review 7">
-            <img src="review7.png" alt="Review 8">
-            <img src="review8.png" alt="Review 9">
-            <img src="review9.png" alt="Review 10">
-            <img src="review10.png" alt="Review 11">
-            <img src="review11.png" alt="Review 12">
-            <img src="review12.png" alt="Review 13">
-            <img src="review13.png" alt="Review 14">
-            <img src="review14.png" alt="Review 15">
-            <img src="review15.png" alt="Review 16">
-            <img src="review16.png" alt="Review 17">
-            <img src="review17.png" alt="Review 18">
-            <img src="review18.png" alt="Review 19">
-            <img src="review19.png" alt="Review 20">
-        </div>
-    </section>
 </body>
 </html>
