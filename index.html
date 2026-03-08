@@ -4,6 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Jillian’s Cleaning & Home Care</title>
+
 <style>
 :root{
   --primary:#0b3c5d;
@@ -133,25 +134,22 @@ button:hover{
   background:#000000;
 }
 
-/* GALLERY IMAGES - uncropped */
-.image-section{
-  background:#000000;
-  padding:30px 0;
-}
-
+/* GALLERY */
 .gallery-grid{
   display:grid;
-  grid-template-columns:repeat(auto-fit, minmax(180px, 1fr));
+  grid-template-columns:repeat(auto-fit, minmax(200px, 1fr));
   gap:12px;
+  align-items:start;
+  padding:20px 0;
 }
 
 .gallery-grid img{
   width:100%;
-  height:auto;        
-  object-fit:contain; 
+  height:200px;        /* uniform thumbnail height */
+  object-fit:contain;  /* keep full image visible */
   cursor:pointer;
   border-radius:8px;
-  background:#000;    
+  background:#000;     /* fills space for non-square images */
 }
 
 /* REVIEWS */
@@ -161,7 +159,6 @@ button:hover{
   border-radius:10px;
   margin-bottom:14px;
   font-size:15px;
-  color:#1a1a1a;
 }
 
 .review span{
@@ -191,6 +188,13 @@ button:hover{
 }
 
 .modal.show{display:flex}
+
+/* MOBILE */
+@media(max-width:768px){
+  .gallery-grid{
+    grid-template-columns:1fr;
+  }
+}
 </style>
 </head>
 <body>
@@ -222,7 +226,10 @@ button:hover{
       <li>Move In / Move Out Cleaning</li>
       <li>Pet Care & Pet-Friendly Homes</li>
     </ul>
-    <p>I take pride in detail-oriented work, respecting client preferences, and providing reliable, professional care you can trust.</p>
+    <p>
+      I take pride in detail-oriented work, respecting client preferences, and providing reliable,
+      professional care you can trust.
+    </p>
   </div>
 
   <div class="card" id="booking">
@@ -252,22 +259,22 @@ button:hover{
     <input id="time" name="time" type="time">
 
     <label for="notes">Notes / Special Instructions</label>
-    <textarea id="notes" name="notes" rows="4" placeholder="Any preferences, pets, or special requests..."></textarea>
+    <textarea id="notes" name="notes" rows="4"
+      placeholder="Any preferences, pets, or special requests..."></textarea>
 
-    <button id="bookBtn" type="button">Book Now / Initial Consultation</button>
+    <button id="bookBtn" type="button" aria-label="Book initial consultation">Book Now / Initial Consultation</button>
   </div>
 </div>
 
-<div class="image-section" id="gallery">
+<div class="container" id="gallery">
+  <h2>Gallery</h2>
   <div class="gallery-grid">
-    <img src="sinkbefore.after.png" class="gallery-img" alt="Sink before and after cleaning">
-    <img src="toiletbefore.after.png" class="gallery-img" alt="Toilet before and after cleaning">
-    <img src="airbnb.png" class="gallery-img" alt="Airbnb cleaning example">
-    <img src="afterclean.jpg" class="gallery-img" alt="After cleaning example">
-    <img src="laundry.png" class="gallery-img" alt="Laundry & folding example">
-    <img src="before.move-out.clean.jpg" class="gallery-img" alt="Before move-out cleaning">
-    <img src="after.move-out.clean.jpg" class="gallery-img" alt="After move-out cleaning">
-    <img src="beforeclean.jpg" class="gallery-img" alt="Before cleaning example">
+    <img src="beforeclean.jpg" alt="Before cleaning">
+    <img src="afterclean.jpg" alt="After cleaning">
+    <img src="airbnb.png" alt="Airbnb cleaning">
+    <img src="laundry.png" alt="Laundry cleaning">
+    <img src="before.move-out.clean.jpg" alt="Before move-out cleaning">
+    <img src="after.move-out.clean.jpg" alt="After move-out cleaning">
   </div>
 </div>
 
@@ -302,18 +309,27 @@ button:hover{
 </div>
 
 <script>
-// Modal functionality
+/* Gallery modal */
 const modal = document.getElementById('modal');
 const modalImg = document.getElementById('modalImg');
 
+function openModal(src, alt){
+  modalImg.src = src;
+  modalImg.alt = alt || '';
+  modal.classList.add('show');
+  modal.setAttribute('aria-hidden', 'false');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeModal(){
+  modal.classList.remove('show');
+  modal.setAttribute('aria-hidden', 'true');
+  modalImg.src = '';
+  document.body.style.overflow = '';
+}
+
 document.querySelectorAll('.gallery-grid img').forEach(img => {
-  img.addEventListener('click', () => {
-    modalImg.src = img.src;
-    modalImg.alt = img.alt;
-    modal.classList.add('show');
-    modal.setAttribute('aria-hidden', 'false');
-    document.body.style.overflow = 'hidden';
-  });
+  img.addEventListener('click', () => openModal(img.src, img.alt));
 });
 
 modal.addEventListener('click', e => {
@@ -324,20 +340,13 @@ document.addEventListener('keydown', e => {
   if(e.key === 'Escape' && modal.classList.contains('show')) closeModal();
 });
 
-function closeModal(){
-  modal.classList.remove('show');
-  modal.setAttribute('aria-hidden', 'true');
-  modalImg.src = '';
-  document.body.style.overflow = '';
-}
-
-// Booking button SMS/email
-document.getElementById('bookBtn').addEventListener('click', () => {
+/* Booking button */
+function sendSMS(){
   const service = document.getElementById('service').value;
   const date = document.getElementById('date').value;
   const time = document.getElementById('time').value;
-  const name = document.getElementById('name').value.trim();
-  const notes = document.getElementById('notes').value.trim();
+  const name = (document.getElementById('name').value || '').trim();
+  const notes = (document.getElementById('notes').value || '').trim();
 
   if(!name){
     alert('Please enter your name before booking.');
@@ -350,16 +359,20 @@ document.getElementById('bookBtn').addEventListener('click', () => {
   if(time) msg += ` at ${time}`;
   msg += `. My name is ${name}.`;
   if(notes) msg += ` Notes: ${notes}`;
-  const body = encodeURIComponent(msg);
 
+  const body = encodeURIComponent(msg);
   const isMobile = /Mobi|Android|iPhone|iPad/i.test(navigator.userAgent);
+
   if(isMobile){
     window.location.href = `sms:2062558039?body=${body}`;
   } else {
     const subject = encodeURIComponent('Booking request: ' + service);
     window.location.href = `mailto:your-email@example.com?subject=${subject}&body=${body}`;
   }
-});
+}
+
+document.getElementById('bookBtn').addEventListener('click', sendSMS);
 </script>
+
 </body>
 </html>
