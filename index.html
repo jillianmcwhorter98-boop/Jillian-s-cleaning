@@ -4,7 +4,6 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Jillian’s Cleaning & Home Care</title>
-
 <style>
 :root{
   --primary:#0b3c5d;
@@ -134,24 +133,25 @@ button:hover{
   background:#000000;
 }
 
-/* IMAGES */
+/* GALLERY IMAGES - uncropped */
 .image-section{
   background:#000000;
   padding:30px 0;
 }
 
-.two-col-images{
+.gallery-grid{
   display:grid;
-  grid-template-columns:1fr 1fr;
+  grid-template-columns:repeat(auto-fit, minmax(180px, 1fr));
   gap:12px;
 }
 
-.two-col-images img{
+.gallery-grid img{
   width:100%;
-  height:280px;
-  object-fit:cover;
+  height:auto;        
+  object-fit:contain; 
   cursor:pointer;
   border-radius:8px;
+  background:#000;    
 }
 
 /* REVIEWS */
@@ -161,6 +161,7 @@ button:hover{
   border-radius:10px;
   margin-bottom:14px;
   font-size:15px;
+  color:#1a1a1a;
 }
 
 .review span{
@@ -168,22 +169,6 @@ button:hover{
   margin-top:6px;
   font-weight:600;
   color:#0b3c5d;
-}
-
-/* RESPONSIVE REVIEWS IMAGE GALLERY */
-.responsive-gallery{
-  display:flex;
-  flex-wrap:wrap;
-  gap:12px;
-}
-
-.responsive-gallery img{
-  flex: 1 1 180px;  /* allows multiple images in a row */
-  height: auto;      /* maintain aspect ratio */
-  object-fit: contain; /* prevent cropping edges */
-  border-radius:8px;
-  cursor:pointer;
-  background: #fff;  /* optional frame behind image */
 }
 
 /* MODAL */
@@ -206,19 +191,8 @@ button:hover{
 }
 
 .modal.show{display:flex}
-
-/* MOBILE */
-@media(max-width:768px){
-  .two-col-images{
-    grid-template-columns:1fr;
-  }
-  .responsive-gallery{
-    justify-content:center;
-  }
-}
 </style>
 </head>
-
 <body>
 
 <header>
@@ -239,7 +213,6 @@ button:hover{
 </div>
 
 <div class="container" id="services">
-
   <div class="card">
     <h2>Services Offered</h2>
     <ul>
@@ -249,15 +222,11 @@ button:hover{
       <li>Move In / Move Out Cleaning</li>
       <li>Pet Care & Pet-Friendly Homes</li>
     </ul>
-    <p>
-      I take pride in detail-oriented work, respecting client preferences, and providing reliable,
-      professional care you can trust.
-    </p>
+    <p>I take pride in detail-oriented work, respecting client preferences, and providing reliable, professional care you can trust.</p>
   </div>
 
   <div class="card" id="booking">
     <h2>Book Now / Initial Consultation</h2>
-
     <p class="book-note">
       After submitting your request, you’ll be connected directly with me to confirm availability and go over all details.
       I take a client-preference approach and tailor services to your specific needs, priorities, pets, and home.
@@ -283,91 +252,77 @@ button:hover{
     <input id="time" name="time" type="time">
 
     <label for="notes">Notes / Special Instructions</label>
-    <textarea id="notes" name="notes" rows="4"
-      placeholder="Any preferences, pets, or special requests..."></textarea>
+    <textarea id="notes" name="notes" rows="4" placeholder="Any preferences, pets, or special requests..."></textarea>
 
-    <button id="bookBtn" type="button" aria-label="Book initial consultation">Book Now / Initial Consultation</button>
+    <button id="bookBtn" type="button">Book Now / Initial Consultation</button>
   </div>
-
 </div>
 
 <div class="image-section" id="gallery">
-  <div class="two-col-images">
-    <img src="sinkbefore.after.png" alt="Sink before and after cleaning" class="gallery-img">
-    <img src="toiletbefore.after.png" alt="Toilet before and after cleaning" class="gallery-img">
+  <div class="gallery-grid">
+    <img src="sinkbefore.after.png" class="gallery-img" alt="Sink before and after cleaning">
+    <img src="toiletbefore.after.png" class="gallery-img" alt="Toilet before and after cleaning">
+    <img src="airbnb.png" class="gallery-img" alt="Airbnb cleaning example">
+    <img src="afterclean.jpg" class="gallery-img" alt="After cleaning example">
+    <img src="laundry.png" class="gallery-img" alt="Laundry & folding example">
+    <img src="before.move-out.clean.jpg" class="gallery-img" alt="Before move-out cleaning">
+    <img src="after.move-out.clean.jpg" class="gallery-img" alt="After move-out cleaning">
+    <img src="beforeclean.jpg" class="gallery-img" alt="Before cleaning example">
   </div>
 </div>
 
-<div class="container">
-
-  <div class="card" id="reviews">
+<div class="container" id="reviews">
+  <div class="card">
     <h2>Client Reviews</h2>
-
     <div class="review">
       “Very detail-oriented, reliable, and respectful of my space. Everything was exactly how I wanted it.”
       <span>— TaskRabbit Client</span>
     </div>
-
     <div class="review">
       “Great with my pets and very professional. I felt comfortable having her in my home.”
       <span>— Repeat Client</span>
     </div>
-
     <div class="review">
       “On time, thorough, and clearly takes pride in her work.”
       <span>— Seattle Client</span>
     </div>
-
-    <!-- Responsive image gallery for additional reviews -->
-    <div class="responsive-gallery">
-      <img src="review.png" alt="Review 1" class="gallery-img">
-      <img src="review1.png" alt="Review 2" class="gallery-img">
-      <img src="review2.png" alt="Review 3" class="gallery-img">
-      <img src="review3.png" alt="Review 4" class="gallery-img">
-      <img src="review4.png" alt="Review 5" class="gallery-img">
-      <img src="review5.png" alt="Review 6" class="gallery-img">
-      <img src="review6.png" alt="Review 7" class="gallery-img">
-      <img src="review7.png" alt="Review 8" class="gallery-img">
-      <img src="review8.png" alt="Review 9" class="gallery-img">
-      <img src="review9.png" alt="Review 10" class="gallery-img">
-      <img src="review10.png" alt="Review 11" class="gallery-img">
-      <img src="review11.png" alt="Review 12" class="gallery-img">
-      <img src="review12.png" alt="Review 13" class="gallery-img">
-      <img src="review13.png" alt="Review 14" class="gallery-img">
-      <img src="review14.png" alt="Review 15" class="gallery-img">
-      <img src="review15.png" alt="Review 16" class="gallery-img">
-      <img src="review16.png" alt="Review 17" class="gallery-img">
-      <img src="review17.png" alt="Review 18" class="gallery-img">
-      <img src="review18.png" alt="Review 19" class="gallery-img">
-      <img src="review19.png" alt="Review 20" class="gallery-img">
-    </div>
   </div>
+</div>
 
-  <div class="card" id="contact">
+<div class="container" id="contact">
+  <div class="card">
     <h2>Contact</h2>
     <p><strong>Phone / Text:</strong> <a href="tel:12062558039">206-255-8039</a></p>
     <p><strong>Service Area:</strong> Seattle & King County surrounding areas</p>
   </div>
-
 </div>
 
-<!-- Modal for gallery images -->
 <div class="modal" id="modal" role="dialog" aria-modal="true" aria-hidden="true">
   <img id="modalImg" alt="">
 </div>
 
 <script>
-/* Gallery modal behavior */
+// Modal functionality
 const modal = document.getElementById('modal');
 const modalImg = document.getElementById('modalImg');
 
-function openModal(src, alt){
-  modalImg.src = src;
-  modalImg.alt = alt || '';
-  modal.classList.add('show');
-  modal.setAttribute('aria-hidden', 'false');
-  document.body.style.overflow = 'hidden';
-}
+document.querySelectorAll('.gallery-grid img').forEach(img => {
+  img.addEventListener('click', () => {
+    modalImg.src = img.src;
+    modalImg.alt = img.alt;
+    modal.classList.add('show');
+    modal.setAttribute('aria-hidden', 'false');
+    document.body.style.overflow = 'hidden';
+  });
+});
+
+modal.addEventListener('click', e => {
+  if(e.target === modal) closeModal();
+});
+
+document.addEventListener('keydown', e => {
+  if(e.key === 'Escape' && modal.classList.contains('show')) closeModal();
+});
 
 function closeModal(){
   modal.classList.remove('show');
@@ -376,29 +331,13 @@ function closeModal(){
   document.body.style.overflow = '';
 }
 
-document.querySelectorAll('.gallery-img').forEach(img => {
-  img.addEventListener('click', () => openModal(img.src, img.alt));
-});
-
-// Close modal by clicking overlay
-modal.addEventListener('click', (e) => {
-  if(e.target === modal) closeModal();
-});
-
-// Close modal with Escape key
-document.addEventListener('keydown', (e) => {
-  if(e.key === 'Escape' && modal.classList.contains('show')) {
-    closeModal();
-  }
-});
-
-/* Booking button behavior */
-function sendSMS(){
+// Booking button SMS/email
+document.getElementById('bookBtn').addEventListener('click', () => {
   const service = document.getElementById('service').value;
   const date = document.getElementById('date').value;
   const time = document.getElementById('time').value;
-  const name = (document.getElementById('name').value || '').trim();
-  const notes = (document.getElementById('notes').value || '').trim();
+  const name = document.getElementById('name').value.trim();
+  const notes = document.getElementById('notes').value.trim();
 
   if(!name){
     alert('Please enter your name before booking.');
@@ -411,23 +350,16 @@ function sendSMS(){
   if(time) msg += ` at ${time}`;
   msg += `. My name is ${name}.`;
   if(notes) msg += ` Notes: ${notes}`;
-
   const body = encodeURIComponent(msg);
 
   const isMobile = /Mobi|Android|iPhone|iPad/i.test(navigator.userAgent);
-
   if(isMobile){
-    const smsUrl = `sms:2062558039?body=${body}`;
-    window.location.href = smsUrl;
+    window.location.href = `sms:2062558039?body=${body}`;
   } else {
     const subject = encodeURIComponent('Booking request: ' + service);
-    const mailto = `mailto:your-email@example.com?subject=${subject}&body=${body}`;
-    window.location.href = mailto;
+    window.location.href = `mailto:your-email@example.com?subject=${subject}&body=${body}`;
   }
-}
-
-document.getElementById('bookBtn').addEventListener('click', sendSMS);
+});
 </script>
-
 </body>
 </html>
