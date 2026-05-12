@@ -1,209 +1,255 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Jillian’s Cleaning & Home Care</title>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+<title>Jillian’s Cleaning & Home Care | Seattle</title>
+
+<meta name="description" content="Professional cleaning, deep cleaning, organization, move-out cleaning, and pet-friendly home care in Seattle & King County." />
 
 <style>
 :root{
   --primary:#0b3c5d;
-  --accent:#000000;
   --soft:#e3ecf2;
 }
 
-*{box-sizing:border-box}
+*{
+  box-sizing:border-box;
+  scroll-behavior:smooth;
+}
 
 body{
   margin:0;
-  font-family:'Segoe UI',sans-serif;
-  background:#000000;
-  color:#ffffff;
+  font-family:Segoe UI, sans-serif;
+  background:#000;
+  color:#fff;
 }
 
 /* HEADER */
 header{
-  background:#000000;
-  color:white;
-  padding:24px 20px;
+  background:#000;
   text-align:center;
+  padding:22px;
+  position:sticky;
+  top:0;
+  z-index:1000;
+  border-bottom:1px solid #222;
 }
 
-header h1{margin:0;font-size:28px;}
-header p{margin-top:8px;opacity:.95}
+header h1{
+  margin:0;
+  font-size:28px;
+}
+
+header p{
+  margin:6px 0 0;
+  opacity:.9;
+}
 
 /* NAV */
-.main-nav{
-  margin-top:12px;
+nav{
+  margin-top:14px;
   display:flex;
   justify-content:center;
-  gap:16px;
   flex-wrap:wrap;
+  gap:12px;
 }
-.main-nav a{
-  color:var(--soft);
+
+nav a{
+  color:#ddd;
   text-decoration:none;
   padding:8px 12px;
   border-radius:8px;
-  background:transparent;
-  font-weight:600;
 }
-.main-nav a:hover, .main-nav a:focus{
-  background:rgba(255,255,255,0.06);
-  outline:none;
+
+nav a:hover{
+  background:rgba(255,255,255,.08);
 }
 
 /* HERO */
-.hero img{
-  width:100%;
-  height:420px;
-  object-fit:cover;
-  display:block;
+.hero{
+  position:relative;
 }
 
-/* LAYOUT */
+.hero img{
+  width:100%;
+  height:480px;
+  object-fit:cover;
+  filter:brightness(.6);
+}
+
+.hero-text{
+  position:absolute;
+  top:50%;
+  left:50%;
+  transform:translate(-50%,-50%);
+  text-align:center;
+}
+
+.hero-text h2{
+  font-size:36px;
+  margin-bottom:10px;
+}
+
+.hero-text p{
+  margin-bottom:18px;
+}
+
+.hero-text a{
+  background:var(--primary);
+  color:white;
+  padding:12px 18px;
+  border-radius:10px;
+  text-decoration:none;
+  font-weight:600;
+}
+
+/* SECTIONS */
 .container{
-  max-width:600px;
+  max-width:1000px;
   margin:auto;
-  padding:22px;
-  background:transparent;
+  padding:40px 20px;
 }
 
 .card{
-  background:#ffffff;
-  color:#1a1a1a;
+  background:#fff;
+  color:#111;
+  padding:26px;
   border-radius:14px;
-  padding:24px;
-  margin-bottom:28px;
-  box-shadow:0 6px 18px rgba(0,0,0,.45);
-  border-left:6px solid #000000;
+  margin-bottom:30px;
 }
 
 h2{
+  color:var(--primary);
   margin-top:0;
-  color:#0b3c5d;
 }
 
-/* BOOK NOTE */
-.book-note{
-  font-size:15px;
-  color:#555;
-  margin-bottom:18px;
-  line-height:1.5;
+/* SERVICES */
+.services{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
+  gap:12px;
 }
 
-/* FORM */
-label{
-  font-weight:600;
-  display:block;
-  margin-top:14px;
+.service{
+  background:var(--soft);
+  padding:14px;
+  border-radius:10px;
 }
 
+/* BOOKING */
 input,select,textarea{
   width:100%;
-  padding:13px;
+  padding:12px;
   margin-top:6px;
   border-radius:8px;
-  border:2px solid var(--soft);
-  font-size:16px;
-  background:#fff;
-  color:#111;
-}
-
-input:focus,
-select:focus,
-textarea:focus{
-  border-color:#000000;
-  outline:none;
+  border:1px solid #ccc;
 }
 
 button{
   width:100%;
-  margin-top:22px;
-  padding:16px;
-  background:#0b3c5d;
-  color:white;
+  padding:14px;
+  margin-top:18px;
   border:none;
   border-radius:10px;
-  font-size:17px;
-  font-weight:600;
+  background:var(--primary);
+  color:#fff;
+  font-size:16px;
   cursor:pointer;
-}
-
-button:hover{
-  background:#000000;
 }
 
 /* GALLERY */
-.gallery-grid{
+.gallery{
   display:grid;
-  grid-template-columns:repeat(auto-fit, minmax(200px, 1fr));
-  gap:12px;
-  align-items:start;
-  padding:20px 0;
+  grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
+  gap:10px;
 }
 
-.gallery-grid img{
+.gallery img{
   width:100%;
-  height:200px;        /* uniform thumbnail height */
-  object-fit:contain;  /* keep full image visible */
+  height:200px;
+  object-fit:cover;
+  border-radius:10px;
   cursor:pointer;
+}
+
+/* REVIEWS TABS */
+.tabs{
+  display:flex;
+  gap:10px;
+  flex-wrap:wrap;
+  margin-bottom:15px;
+}
+
+.tab-btn{
+  padding:10px 14px;
+  border:none;
   border-radius:8px;
-  background:#000;     /* fills space for non-square images */
+  cursor:pointer;
+  background:#ddd;
+  font-weight:600;
+}
+
+.tab-btn.active{
+  background:var(--primary);
+  color:#fff;
+}
+
+.tab-content{
+  display:none;
+}
+
+.tab-content.active{
+  display:block;
 }
 
 /* REVIEWS */
 .review{
   background:var(--soft);
-  padding:16px;
+  padding:14px;
   border-radius:10px;
-  margin-bottom:14px;
-  font-size:15px;
+  margin-bottom:12px;
 }
 
-.review span{
-  display:block;
-  margin-top:6px;
-  font-weight:600;
-  color:#0b3c5d;
+/* PHOTO REVIEWS */
+.photo-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(180px,1fr));
+  gap:10px;
 }
 
-/* MODAL */
-.modal{
-  display:none;
-  position:fixed;
-  inset:0;
-  background:rgba(0,0,0,.9);
-  justify-content:center;
-  align-items:center;
-  z-index:2000;
-  padding:20px;
+.photo-grid img{
+  width:100%;
+  height:220px;
+  object-fit:cover;
+  border-radius:10px;
 }
 
-.modal img{
-  max-width:92%;
-  max-height:92%;
-  border-radius:12px;
-  box-shadow:0 10px 30px rgba(0,0,0,.6);
+/* CONTACT */
+.contact a{
+  color:var(--primary);
+  font-weight:700;
+  text-decoration:none;
 }
 
-.modal.show{display:flex}
-
-/* MOBILE */
-@media(max-width:768px){
-  .gallery-grid{
-    grid-template-columns:1fr;
-  }
+/* FOOTER */
+footer{
+  text-align:center;
+  padding:30px;
+  color:#aaa;
+  font-size:14px;
 }
 </style>
 </head>
+
 <body>
 
 <header>
   <h1>Jillian’s Cleaning & Home Care</h1>
-  <p>Serving Seattle & King County Surrounding Areas</p>
+  <p>Seattle & King County</p>
 
-  <nav class="main-nav" aria-label="Main navigation">
+  <nav>
     <a href="#services">Services</a>
     <a href="#booking">Book</a>
     <a href="#gallery">Gallery</a>
@@ -212,166 +258,146 @@ button:hover{
   </nav>
 </header>
 
+<!-- HERO -->
 <div class="hero">
-  <img src="flyer.jpg" alt="Professional Cleaning Services Seattle">
+  <img src="flyer.jpg" alt="Cleaning Service Seattle">
+  <div class="hero-text">
+    <h2>Reliable Home Cleaning</h2>
+    <p>Detail-Oriented • Pet Friendly • Trusted Care</p>
+    <a href="#booking">Book Now</a>
+  </div>
 </div>
 
+<!-- SERVICES -->
 <div class="container" id="services">
   <div class="card">
-    <h2>Services Offered</h2>
-    <ul>
-      <li>Standard & Deep Cleaning</li>
-      <li>Organization & Decluttering</li>
-      <li>Laundry & Folding</li>
-      <li>Move In / Move Out Cleaning</li>
-      <li>Pet Care & Pet-Friendly Homes</li>
-    </ul>
-    <p>
-      I take pride in detail-oriented work, respecting client preferences, and providing reliable,
-      professional care you can trust.
-    </p>
-  </div>
+    <h2>Services</h2>
 
-  <div class="card" id="booking">
-    <h2>Book Now / Initial Consultation</h2>
-    <p class="book-note">
-      After submitting your request, you’ll be connected directly with me to confirm availability and go over all details.
-      I take a client-preference approach and tailor services to your specific needs, priorities, pets, and home.
-    </p>
-
-    <label for="service">Service Type</label>
-    <select id="service" name="service">
-      <option>Standard Cleaning</option>
-      <option>Deep Cleaning</option>
-      <option>Organization</option>
-      <option>Laundry & Folding</option>
-      <option>Move In / Out</option>
-      <option>Pet Care</option>
-    </select>
-
-    <label for="name">Your Name</label>
-    <input id="name" name="name" type="text" placeholder="Full name" autocomplete="name" required>
-
-    <label for="date">Preferred Date</label>
-    <input id="date" name="date" type="date">
-
-    <label for="time">Preferred Time</label>
-    <input id="time" name="time" type="time">
-
-    <label for="notes">Notes / Special Instructions</label>
-    <textarea id="notes" name="notes" rows="4"
-      placeholder="Any preferences, pets, or special requests..."></textarea>
-
-    <button id="bookBtn" type="button" aria-label="Book initial consultation">Book Now / Initial Consultation</button>
+    <div class="services">
+      <div class="service">Deep Cleaning</div>
+      <div class="service">Standard Cleaning</div>
+      <div class="service">Move-Out Cleaning</div>
+      <div class="service">Organization</div>
+      <div class="service">Laundry</div>
+      <div class="service">Pet-Friendly Care</div>
+    </div>
   </div>
 </div>
 
+<!-- BOOKING -->
+<div class="container" id="booking">
+  <div class="card">
+    <h2>Book Consultation</h2>
+
+    <input id="name" placeholder="Name">
+    <input id="phone" placeholder="Phone">
+    <input id="date" type="date">
+    <input id="time" type="time">
+    <textarea id="notes" placeholder="Notes"></textarea>
+
+    <button onclick="book()">Send Request</button>
+  </div>
+</div>
+
+<!-- GALLERY -->
 <div class="container" id="gallery">
-  <h2>Gallery</h2>
-  <div class="gallery-grid">
-    <img src="beforeclean.jpg" alt="Before cleaning">
-    <img src="afterclean.jpg" alt="After cleaning">
-    <img src="airbnb.png" alt="Airbnb cleaning">
-    <img src="laundry.png" alt="Laundry cleaning">
-    <img src="before.move-out.clean.jpg" alt="Before move-out cleaning">
-    <img src="after.move-out.clean.jpg" alt="After move-out cleaning">
+  <div class="card">
+    <h2>Gallery</h2>
+
+    <div class="gallery">
+      <img src="beforeclean.jpg">
+      <img src="afterclean.jpg">
+      <img src="airbnb.png">
+      <img src="laundry.png">
+    </div>
+
   </div>
 </div>
 
+<!-- REVIEWS WITH TABS -->
 <div class="container" id="reviews">
   <div class="card">
-    <h2>Client Reviews</h2>
-    <div class="review">
-      “Very detail-oriented, reliable, and respectful of my space. Everything was exactly how I wanted it.”
-      <span>— TaskRabbit Client</span>
+    <h2>Reviews</h2>
+
+    <div class="tabs">
+      <button class="tab-btn active" onclick="openTab(event,'text')">Written</button>
+      <button class="tab-btn" onclick="openTab(event,'photos')">Photos</button>
     </div>
-    <div class="review">
-      “Great with my pets and very professional. I felt comfortable having her in my home.”
-      <span>— Repeat Client</span>
+
+    <!-- TEXT REVIEWS -->
+    <div id="text" class="tab-content active">
+      <div class="review">“Very detailed and reliable.” — Client</div>
+      <div class="review">“Amazing with pets and very professional.” — Client</div>
+      <div class="review">“Always on time and thorough.” — Client</div>
     </div>
-    <div class="review">
-      “On time, thorough, and clearly takes pride in her work.”
-      <span>— Seattle Client</span>
+
+    <!-- PHOTO REVIEWS -->
+    <div id="photos" class="tab-content">
+      <div class="photo-grid">
+        <img src="review1.jpg">
+        <img src="review2.jpg">
+        <img src="review3.jpg">
+        <img src="review4.jpg">
+      </div>
     </div>
+
   </div>
 </div>
 
+<!-- CONTACT -->
 <div class="container" id="contact">
-  <div class="card">
+  <div class="card contact">
     <h2>Contact</h2>
-    <p><strong>Phone / Text:</strong> <a href="tel:12062558039">206-255-8039</a></p>
-    <p><strong>Service Area:</strong> Seattle & King County surrounding areas</p>
+
+    <p><a href="tel:+12062558039">(206) 255-8039</a></p>
+    <p>Seattle & King County</p>
+
   </div>
 </div>
 
-<div class="modal" id="modal" role="dialog" aria-modal="true" aria-hidden="true">
-  <img id="modalImg" alt="">
-</div>
+<footer>
+  © 2026 Jillian’s Cleaning & Home Care
+</footer>
 
 <script>
-/* Gallery modal */
-const modal = document.getElementById('modal');
-const modalImg = document.getElementById('modalImg');
 
-function openModal(src, alt){
-  modalImg.src = src;
-  modalImg.alt = alt || '';
-  modal.classList.add('show');
-  modal.setAttribute('aria-hidden', 'false');
-  document.body.style.overflow = 'hidden';
+/* TABS */
+function openTab(evt, id){
+
+  document.querySelectorAll('.tab-content').forEach(t=>{
+    t.classList.remove('active');
+  });
+
+  document.querySelectorAll('.tab-btn').forEach(b=>{
+    b.classList.remove('active');
+  });
+
+  document.getElementById(id).classList.add('active');
+  evt.target.classList.add('active');
+
 }
 
-function closeModal(){
-  modal.classList.remove('show');
-  modal.setAttribute('aria-hidden', 'true');
-  modalImg.src = '';
-  document.body.style.overflow = '';
-}
+/* BOOKING */
+function book(){
 
-document.querySelectorAll('.gallery-grid img').forEach(img => {
-  img.addEventListener('click', () => openModal(img.src, img.alt));
-});
-
-modal.addEventListener('click', e => {
-  if(e.target === modal) closeModal();
-});
-
-document.addEventListener('keydown', e => {
-  if(e.key === 'Escape' && modal.classList.contains('show')) closeModal();
-});
-
-/* Booking button */
-function sendSMS(){
-  const service = document.getElementById('service').value;
+  const name = document.getElementById('name').value;
+  const phone = document.getElementById('phone').value;
   const date = document.getElementById('date').value;
   const time = document.getElementById('time').value;
-  const name = (document.getElementById('name').value || '').trim();
-  const notes = (document.getElementById('notes').value || '').trim();
+  const notes = document.getElementById('notes').value;
 
-  if(!name){
-    alert('Please enter your name before booking.');
-    document.getElementById('name').focus();
-    return;
-  }
+  let msg = `Hi! My name is ${name}. I want cleaning service.`;
 
-  let msg = `Hi Jillian! I'd like to schedule an initial consultation for ${service}`;
-  if(date) msg += ` on ${date}`;
-  if(time) msg += ` at ${time}`;
-  msg += `. My name is ${name}.`;
+  if(date) msg += ` Date: ${date}`;
+  if(time) msg += ` Time: ${time}`;
+  if(phone) msg += ` Phone: ${phone}`;
   if(notes) msg += ` Notes: ${notes}`;
 
-  const body = encodeURIComponent(msg);
-  const isMobile = /Mobi|Android|iPhone|iPad/i.test(navigator.userAgent);
+  window.location.href =
+    `sms:+12062558039?body=` + encodeURIComponent(msg);
 
-  if(isMobile){
-    window.location.href = `sms:2062558039?body=${body}`;
-  } else {
-    const subject = encodeURIComponent('Booking request: ' + service);
-    window.location.href = `mailto:your-email@example.com?subject=${subject}&body=${body}`;
-  }
 }
 
-document.getElementById('bookBtn').addEventListener('click', sendSMS);
 </script>
 
 </body>
